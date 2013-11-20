@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JardinDesVerbes</string>
+    <string name="action_settings">Settings</string>
+    <string name="Profil_CreeProfilMessage">Créer un nouveau profil :</string>
+    <string name="Profil_ListViewInformation">Choisissez un profil :</string>
+    <string name="Profil_Application_Titre">Le Jardin des Verbes</string>
+    <string  name="Profil_CreeProfilBouton">Ajouter le profil</string>
+
+</resources>
