@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"> 
+
+    <!-- Layout de base des éléments de la liste de sélection des profils. -->
+
+    <TextView
+        android:id="@+id/Profil_List_informations"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/Profil_List_Username"
+        android:layout_below="@+id/Profil_List_Username"
+        android:layout_toRightOf="@+id/icon"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <ImageButton
+        android:id="@+id/Profil_List_Delete_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="6dp"
+        android:background="@null"
+        android:gravity="right"
+        android:soundEffectsEnabled="true"
+        android:src="@android:drawable/ic_delete" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/Profil_List_Username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/Profil_List_Delete_Button"
+        android:layout_toRightOf="@+id/icon"
+        android:singleLine="true"
+        android:textSize="18sp" />
+
+</RelativeLayout>
