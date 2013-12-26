@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_jardin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context=".MainActivity" >
+
+    <!-- android:background="@drawable/choix_profil" -->
+
+    <ImageButton
+        android:id="@+id/fleurs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/objet_fleurs_g"
+        android:onClick="startStory" />
+
+    <ImageButton
+        android:id="@+id/pomme"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="165dp"
+        android:background="@drawable/objet_pomme_g"
+        android:onClick="startStory" />
+
+    <ImageButton
+        android:id="@+id/train"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="370dp"
+        android:background="@drawable/objet_train_g"
+        android:onClick="startStory" />
+    
+	<ImageButton
+        android:id="@+id/nuage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="310dp"
+        android:layout_marginTop="-35dp"
+        android:background="@drawable/objet_nuage_g"
+        android:onClick="startStory" />
+
+    <ImageButton
+        android:id="@+id/ballon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="600dp"
+        android:layout_marginTop="285dp"
+        android:background="@drawable/objet_ballon_g"
+        android:onClick="startStory" />
+
+    <ImageButton
+        android:id="@+id/toupie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="450dp"
+        android:layout_marginTop="295dp"
+        android:background="@drawable/objet_toupie_g"
+        android:onClick="startStory" />
+    
+     <ImageButton
+        android:id="@+id/helico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="530dp"
+        android:layout_marginTop="-35dp"
+        android:background="@drawable/objet_helico_g"
+        android:onClick="startStory" />
+     
+       <ImageButton
+        android:id="@+id/arbre"
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="700dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/objet_arbre_g"
+        android:onClick="startStory" />
+
+</FrameLayout>
