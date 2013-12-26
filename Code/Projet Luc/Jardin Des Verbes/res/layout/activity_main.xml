@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayoutGlobal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/profil_background"
+    android:keepScreenOn="true"
+    tools:context=".Main_Profil" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutAppli"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginTop="21dp"
+        android:layout_weight=".6"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/LogoAppli"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/sym_def_app_icon" />
+
+        <LinearLayout
+            android:id="@+id/LayoutProfilForm"
+            android:layout_width="450dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/bordure_profil"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/Profil_ChargerProfilTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/Profil_ChargerProfilMessage"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/Profil_ChargerProfilTextField"
+                android:layout_width="248dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <LinearLayout
+                android:id="@+id/LayoutBoutons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/Profil_ChargerProfilButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Profil_ChargerProfilBouton" />
+
+                <Button
+                    android:id="@+id/Profil_CreerProfilButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Profil_CreerProfilBouton" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
