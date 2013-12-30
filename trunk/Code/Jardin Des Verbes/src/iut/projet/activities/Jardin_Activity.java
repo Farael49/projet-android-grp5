@@ -105,30 +105,31 @@ public class Jardin_Activity extends Activity {
 			nomObjet = "arbre";
 			break;
 		}
-		int index_objet_choisit=0;
+		
+		ObjetHistoire histoire = null
+				;
 		// Parcourt le contenu de nomsObjets pour trouver l'objet choisit par l'utilisateur
 		for(ObjetHistoire hist : profil.getLesObjets()){
 			
+			if(hist.getReference().equals(nomObjet)){
+				// Chargement histoire débloquée OU déjà faite.
+				histoire = hist;
+				startStoryActivity(histoire);
+				break;
+			} 
+				
 		}
-		while(!profil.getLesObjets().get(index_objet_choisit).getReference().equals(nomObjet)){
-			index_objet_choisit++;
-		}
-		if(profil.getLesObjets().get(index_objet_choisit).getEtat()==0){
-			toast.cancel();
-			toast = Toast.makeText(getApplicationContext(), "Histoire "+nomObjet+" non débloquée", Toast.LENGTH_SHORT);
-			toast.show();
-		}
-		else{
-			Intent intent = new Intent(Jardin_Activity.this,
-					Histoire_Activity.class);
-			intent.putExtra("nomObjet", nomObjet);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-			toast.cancel();
-			toast = Toast.makeText(getApplicationContext(), "Chargement de l'histoire \""+nomObjet+"\"", Toast.LENGTH_SHORT);
-			toast.show();
-		}
-
+		if(histoire==null)
+			Utils.showToastText(this, "Histoire "+nomObjet+" non débloquée");
+	}
+	
+	private void startStoryActivity(ObjetHistoire hist) {
+		Intent intent = new Intent(Jardin_Activity.this,
+				Histoire_Activity.class);
+		intent.putExtra("Histoire", hist.getReference());
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+		Utils.showToastText(this, "Chargement de l'histoire \""+hist+"\"");
 	}
 
 

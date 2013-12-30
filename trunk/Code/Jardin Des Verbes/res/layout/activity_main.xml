@@ -68,6 +68,13 @@
                     android:text="@string/Profil_CreerProfilBouton" />
 
             </LinearLayout>
+            
+            <Button
+                    android:id="@+id/Profil_viderListe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Debug, VIDER les profils" />
+            
         </LinearLayout>
     </LinearLayout>
 
