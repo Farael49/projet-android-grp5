@@ -68,17 +68,18 @@ public final class R {
         public static final int Profil_ChargerProfilTextField=0x7f090005;
         public static final int Profil_ChargerProfilTextView=0x7f090004;
         public static final int Profil_CreerProfilButton=0x7f090008;
-        public static final int action_settings=0x7f090013;
-        public static final int arbre=0x7f090012;
-        public static final int ballon=0x7f09000f;
-        public static final int editText1=0x7f09000a;
-        public static final int fleurs=0x7f09000b;
-        public static final int helico=0x7f090011;
-        public static final int nuage=0x7f09000e;
-        public static final int pomme=0x7f09000c;
-        public static final int textView1=0x7f090009;
-        public static final int toupie=0x7f090010;
-        public static final int train=0x7f09000d;
+        public static final int Profil_viderListe=0x7f090009;
+        public static final int action_settings=0x7f090014;
+        public static final int arbre=0x7f090013;
+        public static final int ballon=0x7f090010;
+        public static final int editText1=0x7f09000b;
+        public static final int fleurs=0x7f09000c;
+        public static final int helico=0x7f090012;
+        public static final int nuage=0x7f09000f;
+        public static final int pomme=0x7f09000d;
+        public static final int textView1=0x7f09000a;
+        public static final int toupie=0x7f090011;
+        public static final int train=0x7f09000e;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
