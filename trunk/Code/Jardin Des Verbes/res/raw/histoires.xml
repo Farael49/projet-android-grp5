@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<histoires>
+
+    <histoire title="pomme" >
+        <phrases>
+            <value>
+Dans mon jardin, il y a un grand pommier. Dedans, il   
+            </value>
+            <value>
+des tas de pommes. Elles 
+            </value>
+            <value>
+bien rouges quand elles sont mures. Quand c’est le cas, on 
+            </value>
+            <value>
+savourer leur bon gout sucré. Les tartes que ma mère en fait 
+            </value>
+            <value>
+toute la famille. 
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="1"
+                temps="Present" >
+pousse
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+sont
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+peut
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+régalent
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="train" >
+        <phrases>
+            <value>
+Je            
+            </value>
+            <value>
+un beau train de bois. Il 
+            </value>
+            <value>
+beaucoup de passagers à travers pleins de circuits. Je 
+            </value>
+            <value>
+les circuits comme j’en ai envie, et le train le 
+            </value>
+            <value>
+comme je le 
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="1"
+                temps="Present" >
+possède
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+transporte
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+construis
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+parcourt
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+souhaite
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="arbre" >
+        <phrases>
+            <value>
+Il            
+            </value>
+            <value>
+beaucoup de sortes d’arbres. Les arbres fruitiers 
+            </value>
+            <value>
+des fruits, alors que les autres non. Celui de mon jardin 
+            </value>
+            <value>
+une balançoire accrochée à ses branches. Je m’y
+            </value>
+            <value>
+très souvent. Je
+            </value>
+            <value>
+beaucoup !
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="1"
+                temps="Present" >
+existe
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+produisent
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+a
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+balance
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+m'amuse
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="ballon" >
+        <phrases>
+            <value>
+J'           
+            </value>
+            <value>
+un gros ballon de plage, avec lequel je
+            </value>
+            <value>
+en vacances au bord de la mer. Il
+            </value>
+            <value>
+très bien dans la mer, même avec moi dessus ! Malheureusement, un jour de départ, je ne le
+            </value>
+            <value>
+plus : il
+            </value>
+            <value>
+!
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="3"
+                temps="Present" >
+avais
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+jouais
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+flottait
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+trouvais
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="PQP" >
+avait disparu
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="fleurs" >
+        <phrases>
+            <value>
+Les fleurs de mon ancien jardin          
+            </value>
+            <value>
+étaient très jolies, bien plus que celles de maintenant. Nous 
+            </value>
+            <value>
+ de beaux parterres remplis de fleurs qui 
+            </value>
+            <value>
+sous la rosée du matin. Chacune 
+            </value>
+            <value>
+briller plus que le soleil et chacune nous 
+            </value>
+            <value>
+.
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="3"
+                temps="Imparfait" >
+étaient
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Imparfait" >
+avions
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+brillaient
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+semblait
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+émerveillait
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="helico" >
+        <phrases>
+            <value>
+Plus tard, j’
+
+            </value>
+            <value>
+ un gros hélicoptère ! Il 
+
+            </value>
+            <value>
+haut dans le ciel. Pas autant qu’un avion, mais mon hélicoptère 
+
+            </value>
+            <value>
+vers le haut, sans piste de décollage ! Il
+
+            </value>
+            <value>
+tout doucement vers les nuages, mais il 
+
+            </value>
+            <value>
+beaucoup de bruit !
+
+
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="3"
+                temps="Imparfait" >
+aurais
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+volera
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+décollera
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+s'élèvera
+
+
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Imparfait" >
+fera
+
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="nuage" >
+        <phrases>
+            <value>
+Je
+            </value>
+            <value>
+ souvent passer les nuages au-dessus de ma tête. Je 
+            </value>
+            <value>
+dans l’herbe, et je 
+            </value>
+            <value>
+les nuages défiler dans le ciel. Leur ballet dans le ciel bleu me 
+            </value>
+            <value>
+toujours très heureux, et je 
+
+            </value>
+            <value>
+dès que je le pouvais.
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+regardais
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+m'allongeais
+
+
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Imparfait" >
+rendait
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Imparfait" >
+recommençais
+
+
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Imparfait" >
+pouvais
+
+            </verbe>
+        </verbes>
+    </histoire>
+    <histoire title="toupie" >
+        <phrases>
+            <value>
+Beaucoup de toupies différentes
+            </value>
+            <value>
+. On 
+            </value>
+            <value>
+faire tourner certaines à la main, et d’autres 
+            </value>
+            <value>
+d’un mécanisme qui les font tourner toutes seules. La mienne se
+            </value>
+            <value>
+à la main. Je
+            </value>
+            <value>
+cela bien plus amusant !
+            </value>
+        </phrases>
+
+        <verbes>
+            <verbe
+                groupe="1"
+                temps="Present" >
+existent
+
+
+            </verbe>
+            <verbe
+                groupe="3"
+                temps="Present" >
+doit
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+disposent
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+lance
+
+
+            </verbe>
+            <verbe
+                groupe="1"
+                temps="Present" >
+trouve
+
+            </verbe>
+        </verbes>
+    </histoire>
+</histoires>
