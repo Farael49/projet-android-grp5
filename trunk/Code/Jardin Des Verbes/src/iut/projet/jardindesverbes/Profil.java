@@ -9,26 +9,13 @@ public class Profil {
 	private int niveau;
 	private int experience;
 	private List<ObjetHistoire> lesObjets;
-
-	// Constructeurs
-	public Profil(String username, int niveau, int experience) {
-		this.username = username;
-		this.niveau = niveau;
-		this.experience = experience;
-	}
-
-	public Profil(String username, int niveau) {
-		this.username = username;
-		this.niveau = niveau;
-		this.experience = 0;
-		this.lesObjets = new ArrayList<ObjetHistoire>();
-	}
 	
 	public Profil(String username) {
 		this.username = username;
 		this.niveau = 1;
 		this.experience = 0;
 		this.lesObjets = new ArrayList<ObjetHistoire>();
+		this.lesObjets.add(new ObjetHistoire("fleurs",ObjetHistoire.AVAILABLE));
 	}
 	
 	public Profil() {

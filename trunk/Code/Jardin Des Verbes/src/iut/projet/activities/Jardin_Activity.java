@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,20 +36,16 @@ public class Jardin_Activity extends Activity {
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
 		setContentView(R.layout.jardin_choix_objet);
-		
-		
 		Bundle extras = getIntent().getExtras();
 	   	profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
+	   	Log.e("JDV","Valeur :"+R.drawable.histoire_helico);
 		setObjectBackground();
 		Utils.showToastText(this, profil.getUsername());
 	}
 
 	private void setObjectBackground() {
 		ImageButton img;
-		
-		
 		/*
 		// Permet d'assigner à chaque objet son image et son état
 		nomsObjets = new ArrayList<ObjetHistoire>();
@@ -77,8 +74,6 @@ public class Jardin_Activity extends Activity {
 
 	public void startStory(View v){
 		String nomObjet=null;
-		Toast toast = new Toast(getApplicationContext());
-		boolean start = false;
 		switch (v.getId()) {
 		case R.id.fleurs:
 			nomObjet = "fleurs";
@@ -117,8 +112,8 @@ public class Jardin_Activity extends Activity {
 				startStoryActivity(histoire);
 				break;
 			} 
-				
 		}
+		
 		if(histoire==null)
 			Utils.showToastText(this, "Histoire "+nomObjet+" non débloquée");
 	}
@@ -126,7 +121,7 @@ public class Jardin_Activity extends Activity {
 	private void startStoryActivity(ObjetHistoire hist) {
 		Intent intent = new Intent(Jardin_Activity.this,
 				Histoire_Activity.class);
-		intent.putExtra("Histoire", hist.getReference());
+		intent.putExtra("story", hist.getReference());
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 		Utils.showToastText(this, "Chargement de l'histoire \""+hist+"\"");
