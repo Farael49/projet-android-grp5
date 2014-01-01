@@ -30,7 +30,7 @@ public class Histoire_Activity extends Activity {
 
 		//Récupère le nom de l'objet choisit 
 		Bundle extras = getIntent().getExtras();
-		String nomObjet = extras.getString("nomObjet");
+		String nomObjet = extras.getString("story");
 
 		System.out.println(nomObjet);
 		//System.out.println(list.get(0).getTitre());
@@ -50,7 +50,7 @@ public class Histoire_Activity extends Activity {
 		// Récupère l'id de l'image utilisee comme background pour cette histoire
 		int resID = getResources().getIdentifier("histoire_"+nomObjet, "drawable", getPackageName());
 		// Redéfinit le background du layout
-		fl.setBackgroundResource(resID);
+		//fl.setBackgroundResource(resID);
 
 		// Récupère le TextView utilisé pour afficher l'histoire
 		TextView text1 = (TextView) this.findViewById(R.id.textView1);

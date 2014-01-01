@@ -42,6 +42,8 @@ public class Main_Profil_Activity extends Activity {
 		// Récupération des éléments
 		Button loadProfilButton = (Button) findViewById(R.id.Profil_ChargerProfilButton);
 		Button addProfilButton = (Button) findViewById(R.id.Profil_CreerProfilButton);
+		Button debugProfilButton = (Button) findViewById(R.id.Profil_viderListe);
+		
 		profilTextField = (EditText) findViewById(R.id.Profil_ChargerProfilTextField);
 		
 		// Chargement des profils
@@ -61,6 +63,13 @@ public class Main_Profil_Activity extends Activity {
 					loadProfilAction();
 			}
 		});
+		
+		debugProfilButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+					debugRemoveListAction();
+			}
+		});
+		
 		
 		// Pression touche 'entrée' sur le clavier virtuel.
 		// On considère que c'est le raccourcis pour charger le profil.
@@ -109,11 +118,13 @@ public class Main_Profil_Activity extends Activity {
 			i.putExtra("username", profil.getUsername());
 			startActivity(i);
 		}
-		//profils.viderListe(this);
 		profils.afficherListe();
 	}
 
-	
+	private void debugRemoveListAction(){
+		Utils.showToastText(this, "XML de profils vidé.");
+		profils.viderListe(this);
+	}
 	
 
 	@Override
