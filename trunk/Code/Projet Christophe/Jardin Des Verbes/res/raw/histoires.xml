@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <histoires>
-	<histoire title="pomme">
+	<histoire title="pomme" debloque="train">
 		<phrases>
 			<value>Dans mon jardin, il y a un grand pommier. Dedans, il</value>
 			<value>des tas de pommes. Elles</value>
@@ -15,7 +15,7 @@
 			<verbe groupe="1" temps="Present" infinitif="Régaler">régalent</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="train">
+	<histoire title="train" debloque="arbre">
 		<phrases>
 			<value>Je</value>
 			<value>un beau train de bois. Il</value>
@@ -31,7 +31,7 @@
 			<verbe groupe="1" temps="Present" infinitif="Souhaiter">souhaite</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="arbre">
+	<histoire title="arbre" debloque="ballon">
 		<phrases>
 			<value>Il</value>
 			<value>beaucoup de sortes d’arbres. Les arbres fruitiers</value>
@@ -48,7 +48,7 @@
 			<verbe groupe="1" temps="Present" infinitif="S'amuser">m'amuse</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="ballon">
+	<histoire title="ballon" debloque="fleurs">
 		<phrases>
 			<value>J'</value>
 			<value>un gros ballon de plage, avec lequel je</value>
@@ -65,7 +65,7 @@
 			<verbe groupe="3" temps="PQP" infinitif="Disparaitre">avait disparu</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="fleurs">
+	<histoire title="fleurs" debloque="helico">
 		<phrases>
 			<value>Les fleurs de mon ancien jardin</value>
 			<value>très jolies, bien plus que celles de maintenant. Nous</value>
@@ -82,7 +82,7 @@
 			<verbe groupe="1" temps="Imparfait" infinitif="Emerveiller">émerveillait</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="helico">
+	<histoire title="helico" debloque="helico">
 		<phrases>
 			<value>Plus tard, j’</value>
 			<value>un gros hélicoptère ! Il</value>
@@ -99,7 +99,7 @@
 			<verbe groupe="3" temps="Imparfait" infinitif="Faire">fera</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="nuage">
+	<histoire title="nuage" debloque="toupie">
 		<phrases>
 			<value>Je</value>
 			<value>souvent passer les nuages au-dessus de ma tête. Je</value>
@@ -116,7 +116,7 @@
 			<verbe groupe="3" temps="Imparfait" infinitif="Pouvoir">pouvais</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="toupie">
+	<histoire title="toupie" debloque="pomme">
 		<phrases>
 			<value>Beaucoup de toupies différentes</value>
 			<value>. On</value>
