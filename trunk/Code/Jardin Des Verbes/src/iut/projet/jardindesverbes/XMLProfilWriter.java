@@ -82,12 +82,12 @@ public class XMLProfilWriter {
 				for (ObjetHistoire obj : p.getLesObjets()) {
 					if (obj.getEtat() == ObjetHistoire.AVAILABLE) {
 						histoire = document.createElement(VALUE);
-						histoire.setTextContent(obj.getObjetImageFilename());
+						histoire.setTextContent(obj.getReference());
 						El_available_story.appendChild(histoire);
 
 					} else if (obj.getEtat() == ObjetHistoire.DONE) {
 						histoire = document.createElement(VALUE);
-						histoire.setTextContent(obj.getObjetImageFilename());
+						histoire.setTextContent(obj.getReference());
 						El_done_story.appendChild(histoire);
 					}
 				}
@@ -107,8 +107,6 @@ public class XMLProfilWriter {
 			transformer.setOutputProperty(
 					"{http://xml.apache.org/xslt}indent-amount", "2");
 			transformer.transform(source, result);
-
-			Toast.makeText(context, "Liste des profils chargée", Toast.LENGTH_LONG).show();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

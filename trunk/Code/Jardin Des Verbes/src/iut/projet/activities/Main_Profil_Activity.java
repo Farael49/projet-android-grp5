@@ -1,20 +1,14 @@
 package iut.projet.activities;
 
+import iut.projet.jardindesverbes.Police;
 import iut.projet.jardindesverbes.Profil;
 import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
-import iut.projet.jardindesverbes.SyntheseVocale;
 import iut.projet.jardindesverbes.Utils;
-import iut.projet.jardindesverbes.XMLProfilLoader;
-import iut.projet.jardindesverbes.XMLProfilWriter;
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -24,7 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class Main_Profil_Activity extends Activity {
 
@@ -39,10 +33,15 @@ public class Main_Profil_Activity extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
 		
+		// Police d'écriture
+		Police police = new Police(getApplicationContext());
+		police.setupLayoutTypefaces(getWindow().getDecorView());
+		
 		// Récupération des éléments
 		Button loadProfilButton = (Button) findViewById(R.id.Profil_ChargerProfilButton);
 		Button addProfilButton = (Button) findViewById(R.id.Profil_CreerProfilButton);
 		Button debugProfilButton = (Button) findViewById(R.id.Profil_viderListe);
+		TextView ChargerProfilTextview  = (TextView) findViewById(R.id.Profil_ChargerProfilTextView);
 		
 		profilTextField = (EditText) findViewById(R.id.Profil_ChargerProfilTextField);
 		

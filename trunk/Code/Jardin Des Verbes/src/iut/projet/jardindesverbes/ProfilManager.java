@@ -3,6 +3,7 @@ package iut.projet.jardindesverbes;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 
 public class ProfilManager {
 
@@ -79,11 +80,11 @@ public class ProfilManager {
 	 * Affiche le contenu de la liste [debug]
 	 */
 	public void afficherListe(){
-		System.out.println("[ DEBUG ] Les Profils :");
+		Log.e("JDV","[ DEBUG ] Les Profils :");
 		int i = 0;
 		for(Profil profil : lesProfils){
 			i++;
-			System.out.println("["+i+"] "+profil.getUsername());
+			Log.e("JDV","["+i+"] "+profil.getUsername());
 		}
 	}
 	

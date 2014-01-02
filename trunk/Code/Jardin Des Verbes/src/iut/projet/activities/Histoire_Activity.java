@@ -6,7 +6,6 @@ import iut.projet.jardindesverbes.XMLStoryLoader;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -50,7 +49,7 @@ public class Histoire_Activity extends Activity {
 		// Récupère l'id de l'image utilisee comme background pour cette histoire
 		int resID = getResources().getIdentifier("histoire_"+nomObjet, "drawable", getPackageName());
 		// Redéfinit le background du layout
-		//fl.setBackgroundResource(resID);
+		fl.setBackgroundResource(resID);
 
 		// Récupère le TextView utilisé pour afficher l'histoire
 		TextView text1 = (TextView) this.findViewById(R.id.textView1);
