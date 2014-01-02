@@ -24,7 +24,7 @@ public class ProfilManager {
 	public boolean addProfil(Context context, Profil profil) {
 		if(!checkExists(profil)){
 			lesProfils.add(profil);
-			XMLProfilWriter.saveProfils(context, lesProfils);
+			saveProfils(context);
 			return true;
 		}else{
 			return false;
@@ -96,6 +96,18 @@ public class ProfilManager {
 		XMLProfilWriter.saveProfils(context, lesProfils);
 	}
 	
+	public void saveProfils(Context context){
+		XMLProfilWriter.saveProfils(context, lesProfils);
+	}
+	
+	/**
+	 * Retourne l'ensemble des profils de l'application
+	 * @return profils
+	 */
+	public List<Profil> getProfils(){
+		return lesProfils;
+	}
+	
 	/**
 	 * Patron Saint Gleton pour le gestionnaire de profils.
 	 * @return
@@ -108,4 +120,5 @@ public class ProfilManager {
 			return instance;
 		}
 	}
+	
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <histoires>
-	<histoire title="pomme">
+	<histoire title="pomme" debloque="train">
 		<phrases>
 			<value>Dans mon jardin, il y a un grand pommier. Dedans, il</value>
 			<value>des tas de pommes. Elles</value>
@@ -9,13 +9,13 @@
 			<value>toute la famille.</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="1" temps="Present">pousse</verbe>
-			<verbe groupe="3" temps="Present">sont</verbe>
-			<verbe groupe="3" temps="Present">peut</verbe>
-			<verbe groupe="1" temps="Present">régalent</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Pousser">pousse</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Être">sont</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Pouvoir">peut</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Régaler">régalent</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="train">
+	<histoire title="train" debloque="arbre">
 		<phrases>
 			<value>Je</value>
 			<value>un beau train de bois. Il</value>
@@ -24,14 +24,14 @@
 			<value>comme je le</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="1" temps="Present">possède</verbe>
-			<verbe groupe="1" temps="Present">transporte</verbe>
-			<verbe groupe="3" temps="Present">construis</verbe>
-			<verbe groupe="3" temps="Present">parcourt</verbe>
-			<verbe groupe="1" temps="Present">souhaite</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Posséder">possède</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Transporter">transporte</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Construire">construis</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Parcourir">parcourt</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Souhaiter">souhaite</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="arbre">
+	<histoire title="arbre" debloque="ballon">
 		<phrases>
 			<value>Il</value>
 			<value>beaucoup de sortes d’arbres. Les arbres fruitiers</value>
@@ -41,14 +41,14 @@
 			<value>beaucoup !</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="1" temps="Present">existe</verbe>
-			<verbe groupe="3" temps="Present">produisent</verbe>
-			<verbe groupe="3" temps="Present">a</verbe>
-			<verbe groupe="1" temps="Present">balance</verbe>
-			<verbe groupe="1" temps="Present">m'amuse</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Exister">existe</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Produire">produisent</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Avoir">a</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Balancer">balance</verbe>
+			<verbe groupe="1" temps="Present" infinitif="S'amuser">m'amuse</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="ballon">
+	<histoire title="ballon" debloque="fleurs">
 		<phrases>
 			<value>J'</value>
 			<value>un gros ballon de plage, avec lequel je</value>
@@ -58,31 +58,31 @@
 			<value>!</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="3" temps="Present">avais</verbe>
-			<verbe groupe="1" temps="Present">jouais</verbe>
-			<verbe groupe="1" temps="Present">flottait</verbe>
-			<verbe groupe="1" temps="Present">trouvais</verbe>
-			<verbe groupe="3" temps="PQP">avait disparu</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Avoir">avais</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Jouer">jouais</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Flotter">flottait</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Trouver">trouvais</verbe>
+			<verbe groupe="3" temps="PQP" infinitif="Disparaitre">avait disparu</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="fleurs">
+	<histoire title="fleurs" debloque="helico">
 		<phrases>
 			<value>Les fleurs de mon ancien jardin</value>
-			<value>étaient très jolies, bien plus que celles de maintenant. Nous</value>
+			<value>très jolies, bien plus que celles de maintenant. Nous</value>
 			<value>de beaux parterres remplis de fleurs qui</value>
 			<value>sous la rosée du matin. Chacune</value>
 			<value>briller plus que le soleil et chacune nous</value>
 			<value>.</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="3" temps="Imparfait">étaient</verbe>
-			<verbe groupe="3" temps="Imparfait">avions</verbe>
-			<verbe groupe="1" temps="Imparfait">brillaient</verbe>
-			<verbe groupe="1" temps="Imparfait">semblait</verbe>
-			<verbe groupe="1" temps="Imparfait">émerveillait</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Être">étaient</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Avoir">avions</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Briller">brillaient</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Sembler">semblait</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Emerveiller">émerveillait</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="helico">
+	<histoire title="helico" debloque="helico">
 		<phrases>
 			<value>Plus tard, j’</value>
 			<value>un gros hélicoptère ! Il</value>
@@ -92,14 +92,14 @@
 			<value>beaucoup de bruit !</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="3" temps="Imparfait">aurais</verbe>
-			<verbe groupe="1" temps="Imparfait">volera</verbe>
-			<verbe groupe="1" temps="Imparfait">décollera</verbe>
-			<verbe groupe="1" temps="Imparfait">s'élèvera</verbe>
-			<verbe groupe="3" temps="Imparfait">fera</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Avoir">aurais</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Voler">volera</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Décoller">décollera</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="S'élever">s'élèvera</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Faire">fera</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="nuage">
+	<histoire title="nuage" debloque="toupie">
 		<phrases>
 			<value>Je</value>
 			<value>souvent passer les nuages au-dessus de ma tête. Je</value>
@@ -109,14 +109,14 @@
 			<value>dès que je le pouvais.</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="1" temps="Imparfait">regardais</verbe>
-			<verbe groupe="1" temps="Imparfait">m'allongeais</verbe>
-			<verbe groupe="3" temps="Imparfait">rendait</verbe>
-			<verbe groupe="1" temps="Imparfait">recommençais</verbe>
-			<verbe groupe="3" temps="Imparfait">pouvais</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Regarder">regardais</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="S'allonger">m'allongeais</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Rendre">rendait</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Recommencer">recommençais</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Pouvoir">pouvais</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="toupie">
+	<histoire title="toupie" debloque="pomme">
 		<phrases>
 			<value>Beaucoup de toupies différentes</value>
 			<value>. On</value>
@@ -126,11 +126,11 @@
 			<value>cela bien plus amusant !</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="1" temps="Present">existent</verbe>
-			<verbe groupe="3" temps="Present">doit</verbe>
-			<verbe groupe="1" temps="Present">disposent</verbe>
-			<verbe groupe="1" temps="Present">lance</verbe>
-			<verbe groupe="1" temps="Present">trouve</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Exister">existent</verbe>
+			<verbe groupe="3" temps="Present" infinitif="Devoir">doit</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Disposer">disposent</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Lancer">lance</verbe>
+			<verbe groupe="1" temps="Present" infinitif="Trouver">trouve</verbe>
 		</verbes>
 	</histoire>
 </histoires>

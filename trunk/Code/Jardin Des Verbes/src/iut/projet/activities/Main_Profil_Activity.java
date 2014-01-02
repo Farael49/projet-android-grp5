@@ -41,7 +41,6 @@ public class Main_Profil_Activity extends Activity {
 		Button loadProfilButton = (Button) findViewById(R.id.Profil_ChargerProfilButton);
 		Button addProfilButton = (Button) findViewById(R.id.Profil_CreerProfilButton);
 		Button debugProfilButton = (Button) findViewById(R.id.Profil_viderListe);
-		TextView ChargerProfilTextview  = (TextView) findViewById(R.id.Profil_ChargerProfilTextView);
 		
 		profilTextField = (EditText) findViewById(R.id.Profil_ChargerProfilTextField);
 		
