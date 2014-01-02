@@ -56,7 +56,7 @@ public class XMLProfilWriter {
 			// Création de l'arborescence DOM
 			Element root = document.createElement(PROFILS);
 
-			// Pour chaque profil de la liste, on crée les éléments.
+			// Pour chaque film de la liste, on crée les éléments.
 			for (Profil p : profils) {
 
 				Element El_profil = document.createElement(PROFIL);
@@ -107,8 +107,6 @@ public class XMLProfilWriter {
 			transformer.setOutputProperty(
 					"{http://xml.apache.org/xslt}indent-amount", "2");
 			transformer.transform(source, result);
-
-			Toast.makeText(context, "Liste des profils chargée", Toast.LENGTH_LONG).show();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

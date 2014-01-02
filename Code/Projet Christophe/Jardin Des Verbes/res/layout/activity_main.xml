@@ -38,7 +38,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/Profil_ChargerProfilMessage"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:tag="Suplexmentary"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/Profil_ChargerProfilTextField"
@@ -46,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
+                android:tag="Suplexmentary"
                 android:inputType="textPersonName" />
 
             <LinearLayout
@@ -59,12 +62,14 @@
                     android:id="@+id/Profil_ChargerProfilButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="Suplexmentary"
                     android:text="@string/Profil_ChargerProfilBouton" />
 
                 <Button
                     android:id="@+id/Profil_CreerProfilButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="Suplexmentary"
                     android:text="@string/Profil_CreerProfilBouton" />
 
             </LinearLayout>

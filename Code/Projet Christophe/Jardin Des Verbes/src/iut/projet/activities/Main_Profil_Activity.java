@@ -1,20 +1,14 @@
 package iut.projet.activities;
 
+import iut.projet.jardindesverbes.Police;
 import iut.projet.jardindesverbes.Profil;
 import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
-import iut.projet.jardindesverbes.SyntheseVocale;
 import iut.projet.jardindesverbes.Utils;
-import iut.projet.jardindesverbes.XMLProfilLoader;
-import iut.projet.jardindesverbes.XMLProfilWriter;
-
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -24,7 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class Main_Profil_Activity extends Activity {
 
@@ -38,13 +32,18 @@ public class Main_Profil_Activity extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
-
+		
+		// Police d'écriture
+		Police police = new Police(getApplicationContext());
+		police.setupLayoutTypefaces(getWindow().getDecorView());
+		
 		// Récupération des éléments
 		Button loadProfilButton = (Button) findViewById(R.id.Profil_ChargerProfilButton);
 		Button addProfilButton = (Button) findViewById(R.id.Profil_CreerProfilButton);
 		Button debugProfilButton = (Button) findViewById(R.id.Profil_viderListe);
+		
 		profilTextField = (EditText) findViewById(R.id.Profil_ChargerProfilTextField);
-
+		
 		// Chargement des profils
 		profils = ProfilManager.getInstance();
 		profils.loadProfils(this);
@@ -55,49 +54,50 @@ public class Main_Profil_Activity extends Activity {
 				createProfilAction();
 			}
 		});
-
+		
 		// Pression du bouton de chargement de profil.
 		loadProfilButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
-				loadProfilAction();
+					loadProfilAction();
 			}
 		});
-
+		
 		debugProfilButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
-				debugRemoveListAction();
+					debugRemoveListAction();
 			}
 		});
-
+		
+		
 		// Pression touche 'entrée' sur le clavier virtuel.
 		// On considère que c'est le raccourcis pour charger le profil.
 		profilTextField.setOnKeyListener(new View.OnKeyListener() {
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-						(keyCode == KeyEvent.KEYCODE_ENTER)) {
-					loadProfilAction();
-					return true;
-				}
-				return false;
-			}
+		    public boolean onKey(View v, int keyCode, KeyEvent event) {
+		        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+		            (keyCode == KeyEvent.KEYCODE_ENTER)) {
+		        	loadProfilAction();
+		          return true;
+		        }
+		        return false;
+		    }
 		});
 	}
-
+	
 	private void createProfilAction() {
 		String str = profilTextField.getText().toString();
-
+	
 		if (str.length()!=0){
 			if(profils.addProfil(this, new Profil(str))){
 				Utils.showToastText(this, "Profil "+str+" crée !");
 			} else{
 				Utils.showToastText(this, "Ce nom est déjà utilisé!");
 			}
-
+			
 		} else {
 			Utils.showToastText(this, "Mets ton nom !");
 		}
 	}
-
+	
 	/**
 	 * Actions effecutées lors du chargement d'un profil.
 	 * Le nom d'utilisateur est envoyé à l'activité du Jardin des Verbes (interface 2nd niveau).
@@ -116,15 +116,14 @@ public class Main_Profil_Activity extends Activity {
 			i.putExtra("username", profil.getUsername());
 			startActivity(i);
 		}
-		//profils.viderListe(this);
 		profils.afficherListe();
 	}
-
 
 	private void debugRemoveListAction(){
 		Utils.showToastText(this, "XML de profils vidé.");
 		profils.viderListe(this);
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
