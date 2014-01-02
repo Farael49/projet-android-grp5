@@ -29,19 +29,18 @@ public class StoryManager {
 	 * @param profilVerif
 	 * @return exists
 	 */
-	public boolean checkLocked(String histoireVerif){
+	public boolean checkExists(String histoireVerif){
 		Histoire story = this.getHistoire(histoireVerif);
 		for(ObjetHistoire objet : lesObjetsHistoires){
 			if(story.getTitre().equals(objet.getReference())){
-				if(objet.getEtat()==ObjetHistoire.LOCKED){
-					return true;
-				}
-				else{
-					return false;
-				}
-
+				return true;
 			}
+			else{
+				return false;
+			}
+
 		}
+
 		//n'arrive jamais
 		return false; 
 	}
@@ -54,7 +53,7 @@ public class StoryManager {
 		}
 		return null; 	
 	}
-	
+
 	public ObjetHistoire getObjetHistoire(String nomHistoire){
 		for(ObjetHistoire histoire : lesObjetsHistoires){
 			if(nomHistoire.equals(histoire.getReference())){

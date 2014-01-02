@@ -1,5 +1,3 @@
-
-
 package iut.projet.jardindesverbes;
 
 import java.util.ArrayList;
@@ -11,7 +9,7 @@ public class Profil {
 	private int niveau;
 	private int experience;
 	private List<ObjetHistoire> lesObjets;
-// utilisé lors de la création d'un profil
+	
 	public Profil(String username) {
 		this.username = username;
 		this.niveau = 1;
@@ -19,11 +17,11 @@ public class Profil {
 		this.lesObjets = new ArrayList<ObjetHistoire>();
 		this.lesObjets.add(new ObjetHistoire("fleurs",ObjetHistoire.AVAILABLE));
 	}
-
+	
 	public Profil() {
 		this.lesObjets = new ArrayList<ObjetHistoire>();
 	}
-
+	
 	// Getters & Setters
 	public String getUsername() {
 		return username;
@@ -48,7 +46,7 @@ public class Profil {
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-
+	
 	public List<ObjetHistoire> getLesObjets(){
 		return lesObjets;
 	}
@@ -58,8 +56,8 @@ public class Profil {
 				+ ", experience=" + experience + ", lesObjets=" + lesObjets
 				+ "]";
 	}
-
-
+	
+	
 
 
 }

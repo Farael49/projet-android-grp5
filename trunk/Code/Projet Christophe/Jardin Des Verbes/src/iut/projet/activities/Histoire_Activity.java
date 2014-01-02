@@ -2,6 +2,7 @@ package iut.projet.activities;
 
 import iut.projet.jardindesverbes.Histoire;
 import iut.projet.jardindesverbes.ObjetHistoire;
+import iut.projet.jardindesverbes.Police;
 import iut.projet.jardindesverbes.R;
 import iut.projet.jardindesverbes.Utils;
 import iut.projet.jardindesverbes.XMLStoryLoader;
@@ -35,6 +36,11 @@ public class Histoire_Activity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
+		
+		// Police d'écriture
+		Police police = new Police(getApplicationContext());
+		police.setupLayoutTypefaces(getWindow().getDecorView());
+		
 		// Récupère l'inputStream, données du fichier histoires.xml
 		InputStream is = getResources().openRawResource(R.raw.histoires);
 		XMLStoryLoader xmlStories = new XMLStoryLoader();

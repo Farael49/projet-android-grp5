@@ -3,6 +3,7 @@ package iut.projet.jardindesverbes;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 
 public class ProfilManager {
 
@@ -23,7 +24,7 @@ public class ProfilManager {
 	public boolean addProfil(Context context, Profil profil) {
 		if(!checkExists(profil)){
 			lesProfils.add(profil);
-			XMLProfilWriter.saveProfils(context, lesProfils);
+			saveProfils(context);
 			return true;
 		}else{
 			return false;
@@ -79,11 +80,11 @@ public class ProfilManager {
 	 * Affiche le contenu de la liste [debug]
 	 */
 	public void afficherListe(){
-		System.out.println("[ DEBUG ] Les Profils :");
+		Log.e("JDV","[ DEBUG ] Les Profils :");
 		int i = 0;
 		for(Profil profil : lesProfils){
 			i++;
-			System.out.println("["+i+"] "+profil.getUsername());
+			Log.e("JDV","["+i+"] "+profil.getUsername());
 		}
 	}
 	
@@ -93,6 +94,18 @@ public class ProfilManager {
 	public void viderListe(Context context){
 		lesProfils.clear();
 		XMLProfilWriter.saveProfils(context, lesProfils);
+	}
+	
+	public void saveProfils(Context context){
+		XMLProfilWriter.saveProfils(context, lesProfils);
+	}
+	
+	/**
+	 * Retourne l'ensemble des profils de l'application
+	 * @return profils
+	 */
+	public List<Profil> getProfils(){
+		return lesProfils;
 	}
 	
 	/**
@@ -107,4 +120,5 @@ public class ProfilManager {
 			return instance;
 		}
 	}
+	
 }

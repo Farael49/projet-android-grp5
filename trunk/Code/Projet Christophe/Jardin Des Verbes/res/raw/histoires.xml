@@ -82,7 +82,7 @@
 			<verbe groupe="1" temps="Imparfait" infinitif="Emerveiller">émerveillait</verbe>
 		</verbes>
 	</histoire>
-	<histoire title="helico" debloque="helico">
+	<histoire title="helico" debloque="nuage">
 		<phrases>
 			<value>Plus tard, j’</value>
 			<value>un gros hélicoptère ! Il</value>

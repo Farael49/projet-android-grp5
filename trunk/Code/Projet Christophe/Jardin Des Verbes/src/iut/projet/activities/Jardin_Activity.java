@@ -6,6 +6,7 @@ import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
 import iut.projet.jardindesverbes.StoryManager;
 import iut.projet.jardindesverbes.Utils;
+import iut.projet.jardindesverbes.XMLProfilWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -156,19 +157,23 @@ public class Jardin_Activity extends Activity {
 					//	String score=data.getStringExtra("score");    
 					String storyToUnlock = StoryManager.getInstance().getHistoire(nomHistoire).getHistoireADebloquer();
 					//storyUnlocked(nomHistoire);
-					if(StoryManager.getInstance().checkLocked(storyToUnlock)){
-						// euh, c'est pas le story manager qu'il faut modifier atm mais bon 
-						StoryManager.getInstance().getObjetHistoire(storyToUnlock).setEtat(ObjetHistoire.AVAILABLE);
+					Log.e("JDV",nomHistoire + " -> " + storyToUnlock);
+					Log.e("JDV",""+StoryManager.getInstance().checkExists(storyToUnlock));
+					//Si l'histoire a débloquer n'est pas encore disponible, on l'ajoute
+					if(!StoryManager.getInstance().checkExists(storyToUnlock)){
+						profil.getLesObjets().add(new ObjetHistoire(storyToUnlock,ObjetHistoire.AVAILABLE));
 						Utils.showToastText(this, "Histoire "+storyToUnlock+" débloquée");
+						// plus qu'à s'occuper de l'histoire finie et la passer en DONE
 					}
-
+					XMLProfilWriter.saveProfils(this,ProfilManager.getInstance().getProfils());
 					Log.e("JDV","RESULTAT OK");
 				}
 			}
+			setObjectBackground();
 		}
 		if (resultCode == RESULT_CANCELED) {    
-			//Write your code if there's no result
-			Log.e("JDV","Histoire complétée, pas de résultat à retourner");
+			//Histoire non complétée jusqu'au bout
+			Log.e("JDV","Histoire terminée, pas de résultat à retourner");
 		}
 	}
 

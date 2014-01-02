@@ -1,10 +1,7 @@
 package iut.projet.jardindesverbes;
 
-import java.io.File;
 import java.io.FileInputStream;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.jdom2.Document;
@@ -51,8 +48,7 @@ public class XMLProfilLoader {
 		if (document == null) {
 			return listeProfils;
 		}
-		// On initialise un nouvel élément racine avec l'élément racine du
-		// document.
+		// On initialise un nouvel élément racine avec l'élément racine du document.
 		racine = document.getRootElement();
 
 		// On crée une List contenant tous les noeuds "etudiant" de l'Element
@@ -83,9 +79,6 @@ public class XMLProfilLoader {
 
 			// ajout du film crée dans la liste
 			listeProfils.add(profil);
-		}
-		for (Profil profil : listeProfils) {
-			System.out.println(profil.toString());
 		}
 		// renvoie la liste des Films présents dans le fichier
 		return listeProfils;
