@@ -24,19 +24,25 @@ public class Histoire {
 	public List getTemps() {
 		return temps;
 	}
+	
+	public List getInfinitifs() {
+		return infinitifs;
+	}
 
 	private String titre;
 	private List verbes;
 	private List phrases;
 	private List groupes;
 	private List temps;
+	private List infinitifs;
 	
-	public Histoire(String titre, List listPhrases, List listVerbes, List groupes, List temps){
+	public Histoire(String titre, List listPhrases, List listVerbes, List groupes, List temps, List infinitifs){
 		this.titre = titre;
 		this.phrases = listPhrases;
 		this.verbes = listVerbes;
 		this.groupes = groupes;
 		this.temps = temps;
+		this.infinitifs = infinitifs;
 	}
 	
 	@Override

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +25,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Jardin_Activity extends Activity {
-	
+
 	ImageButton ballon, train;
 	//List<ObjetHistoire> nomsObjets;
 	Profil profil;
@@ -32,23 +33,23 @@ public class Jardin_Activity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.jardin_choix_objet);
-		
-		
+
+
 		Bundle extras = getIntent().getExtras();
-	   	profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
+		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
 		setObjectBackground();
-		Utils.showToastText(this, profil.getUsername());
+		//	Utils.showToastText(this, profil.getLesObjets().get(0).getObjetImageFilename());
 	}
 
 	private void setObjectBackground() {
 		ImageButton img;
-		
-		
+
+
 		/*
 		// Permet d'assigner à chaque objet son image et son état
 		nomsObjets = new ArrayList<ObjetHistoire>();
@@ -62,11 +63,15 @@ public class Jardin_Activity extends Activity {
 		nomsObjets.add(new ObjetHistoire("helico",i));
 		nomsObjets.add(new ObjetHistoire("nuage",i));
 		nomsObjets.add(new ObjetHistoire("arbre",i));
-		*/
-		
+		 */
+		System.out.println(profil.getLesObjets().size());
 		for(ObjetHistoire obj : profil.getLesObjets()){
 			int resImage = getResources().getIdentifier(obj.getObjetImageFilename(), "drawable", getPackageName());
+			System.out.println(obj.getObjetImageFilename());
+			System.out.println(resImage);
 			int resID = getResources().getIdentifier(obj.getReference(), "id", getPackageName());
+			System.out.println(obj.getReference());
+			System.out.println(resID);
 			//int resID = R.id.pomme;
 			//int resImage = R.drawable.objet_pomme;
 			img = (ImageButton) findViewById(resID);
@@ -77,7 +82,6 @@ public class Jardin_Activity extends Activity {
 
 	public void startStory(View v){
 		String nomObjet=null;
-		Toast toast = new Toast(getApplicationContext());
 		boolean start = false;
 		switch (v.getId()) {
 		case R.id.fleurs:
@@ -105,25 +109,28 @@ public class Jardin_Activity extends Activity {
 			nomObjet = "arbre";
 			break;
 		}
-		
-		ObjetHistoire histoire = null
-				;
+
+
 		// Parcourt le contenu de nomsObjets pour trouver l'objet choisit par l'utilisateur
 		for(ObjetHistoire hist : profil.getLesObjets()){
-			
 			if(hist.getReference().equals(nomObjet)){
+				start = true;
 				// Chargement histoire débloquée OU déjà faite.
-				histoire = hist;
-				startStoryActivity(histoire);
+				Intent intent = new Intent(Jardin_Activity.this,
+						Histoire_Activity.class);
+				intent.putExtra("story", hist.getReference());
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				Utils.showToastText(this, "Chargement de l'histoire \""+nomObjet+"\"");
 				break;
 			} 
-				
 		}
-		if(histoire==null)
+		if(start==false)
 			Utils.showToastText(this, "Histoire "+nomObjet+" non débloquée");
+
 	}
-	
-	private void startStoryActivity(ObjetHistoire hist) {
+
+	/*	private void startStoryActivity(ObjetHistoire hist) {
 		Intent intent = new Intent(Jardin_Activity.this,
 				Histoire_Activity.class);
 		intent.putExtra("Histoire", hist.getReference());
@@ -132,6 +139,6 @@ public class Jardin_Activity extends Activity {
 		Utils.showToastText(this, "Chargement de l'histoire \""+hist+"\"");
 	}
 
-
+	 */
 
 }
