@@ -56,7 +56,7 @@ public class XMLProfilWriter {
 			// Création de l'arborescence DOM
 			Element root = document.createElement(PROFILS);
 
-			// Pour chaque film de la liste, on crée les éléments.
+			// Pour chaque profil de la liste, on crée les éléments.
 			for (Profil p : profils) {
 
 				Element El_profil = document.createElement(PROFIL);
@@ -82,12 +82,12 @@ public class XMLProfilWriter {
 				for (ObjetHistoire obj : p.getLesObjets()) {
 					if (obj.getEtat() == ObjetHistoire.AVAILABLE) {
 						histoire = document.createElement(VALUE);
-						histoire.setTextContent(obj.getObjetImageFilename());
+						histoire.setTextContent(obj.getReference());
 						El_available_story.appendChild(histoire);
 
 					} else if (obj.getEtat() == ObjetHistoire.DONE) {
 						histoire = document.createElement(VALUE);
-						histoire.setTextContent(obj.getObjetImageFilename());
+						histoire.setTextContent(obj.getReference());
 						El_done_story.appendChild(histoire);
 					}
 				}

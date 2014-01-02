@@ -20,7 +20,7 @@ import org.xml.sax.XMLReader;
 public class XMLStoryLoader
 {
 	/**
-	 * Code permettant de charger dans le modèle les données du fichier Bibliotheque.xml
+	 * Code permettant de charger dans le modèle les données du fichier histoires.xml
 	 * original provenant de developpez.com, puis modifié pour correspondre à la structure 
 	 * de la classe Film et au fonctionnement de l'application
 	 */
@@ -81,6 +81,7 @@ public class XMLStoryLoader
 			ArrayList<String> contenu_verbes = new ArrayList<String>();
 			ArrayList<String> attributs_groupes = new ArrayList<String>();
 			ArrayList<String> attributs_temps = new ArrayList<String>();
+			ArrayList<String> attributs_infinitifs = new ArrayList<String>();
 			while(k.hasNext()){
 				Element vrb = (Element)k.next();
 				// ajoute le verbe dans la liste contenu_verbes
@@ -89,11 +90,12 @@ public class XMLStoryLoader
 				attributs_groupes.add(vrb.getAttributeValue("groupe"));
 				// ajoute le temps du verbe dans la liste contenu_phrases
 				attributs_temps.add(vrb.getAttributeValue("temps"));
-				System.out.println(vrb.getText());
+				// ajoute l'infinitif du verbe dans la liste contenu_phrases
+				attributs_infinitifs.add(vrb.getAttributeValue("infinitif"));
 			}
 			System.out.println("ensemble des phrases : " + contenu_phrases);
 			// crée une histoire avec les données récupérées
-			histoire = new Histoire(titre, contenu_phrases, contenu_verbes, attributs_groupes, attributs_temps);
+			histoire = new Histoire(titre, contenu_phrases, contenu_verbes, attributs_groupes, attributs_temps, attributs_infinitifs);
 			//ajoute l'histoire dans la liste listeHistoires
 			listeHistoires.add(histoire);
 		}

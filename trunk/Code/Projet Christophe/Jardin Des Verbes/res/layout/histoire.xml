@@ -10,9 +10,15 @@
         android:layout_width="274dp"
         android:layout_height="148dp"
         android:layout_gravity="center_horizontal|center"
-        android:text="This is a great story told by Mr Penguin, the Penguin that tells stories.\nThe end." 
         android:textColor="@android:color/black"/>
 
+     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="150dp"/>
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
