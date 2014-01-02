@@ -45,7 +45,7 @@ public class Jardin_Activity extends Activity {
 
 		Bundle extras = getIntent().getExtras();
 		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
-		StoryManager.getInstance().loadStory(this, profil.getLesObjets());
+		StoryManager.getInstance().loadStory(this, profil.getUsername());
 		setObjectBackground();
 		//	Utils.showToastText(this, profil.getLesObjets().get(0).getObjetImageFilename());
 	}

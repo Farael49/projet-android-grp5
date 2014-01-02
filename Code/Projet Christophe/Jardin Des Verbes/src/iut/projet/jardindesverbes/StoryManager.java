@@ -15,11 +15,11 @@ public class StoryManager {
 	public List<ObjetHistoire> lesObjetsHistoires;
 
 
-	public void loadStory(Context context, List objetHistoire) {
+	public void loadStory(Context context, String username) {
 		InputStream is = context.getResources().openRawResource(R.raw.histoires);
 		XMLStoryLoader xmlStories = new XMLStoryLoader();
 		this.lesHistoires = xmlStories.load(is);
-		this.lesObjetsHistoires = objetHistoire;
+		this.lesObjetsHistoires = ProfilManager.getInstance().getProfil(username).getLesObjets();
 	}
 
 	/**
@@ -32,15 +32,11 @@ public class StoryManager {
 	public boolean checkExists(String histoireVerif){
 		Histoire story = this.getHistoire(histoireVerif);
 		for(ObjetHistoire objet : lesObjetsHistoires){
+			System.out.println(story.getTitre() + " - " + objet.getReference());
 			if(story.getTitre().equals(objet.getReference())){
 				return true;
 			}
-			else{
-				return false;
-			}
-
 		}
-
 		//n'arrive jamais
 		return false; 
 	}
