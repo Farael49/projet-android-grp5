@@ -92,25 +92,27 @@
 			<value>beaucoup de bruit !</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="3" temps="Imparfait" infinitif="Avoir">aurais</verbe>
-			<verbe groupe="1" temps="Imparfait" infinitif="Voler">volera</verbe>
-			<verbe groupe="1" temps="Imparfait" infinitif="Décoller">décollera</verbe>
-			<verbe groupe="1" temps="Imparfait" infinitif="S'élever">s'élèvera</verbe>
-			<verbe groupe="3" temps="Imparfait" infinitif="Faire">fera</verbe>
+			<verbe groupe="3" temps="Futur" infinitif="Avoir">aurais</verbe>
+			<verbe groupe="1" temps="Futur" infinitif="Voler">volera</verbe>
+			<verbe groupe="1" temps="Futur" infinitif="Décoller">décollera</verbe>
+			<verbe groupe="1" temps="Futur" infinitif="S'élever">s'élèvera</verbe>
+			<verbe groupe="3" temps="Futur" infinitif="Faire">fera</verbe>
 		</verbes>
 	</histoire>
 	<histoire title="nuage" debloque="toupie">
 		<phrases>
 			<value>Je</value>
 			<value>souvent passer les nuages au-dessus de ma tête. Je</value>
-			<value>dans l’herbe, et je</value>
+			<value>dans l’herbe, et j'</value>
 			<value>les nuages défiler dans le ciel. Leur ballet dans le ciel bleu me</value>
 			<value>toujours très heureux, et je</value>
-			<value>dès que je le pouvais.</value>
+			<value>dès que je le</value>
+			<value>.</value>
 		</phrases>
 		<verbes>
 			<verbe groupe="1" temps="Imparfait" infinitif="Regarder">regardais</verbe>
 			<verbe groupe="1" temps="Imparfait" infinitif="S'allonger">m'allongeais</verbe>
+			<verbe groupe="1" temps="Imparfait" infinitif="Admirer">admirais</verbe>
 			<verbe groupe="3" temps="Imparfait" infinitif="Rendre">rendait</verbe>
 			<verbe groupe="1" temps="Imparfait" infinitif="Recommencer">recommençais</verbe>
 			<verbe groupe="3" temps="Imparfait" infinitif="Pouvoir">pouvais</verbe>

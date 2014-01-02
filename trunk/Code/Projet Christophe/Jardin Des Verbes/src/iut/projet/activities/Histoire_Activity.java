@@ -81,7 +81,7 @@ public class Histoire_Activity extends Activity {
 
 		// Affiche dans un second textview (au dessus de l'edittext) l'infinitif du 1er verbe à conjuguer
 		final TextView verbeInfinitif =  (TextView) this.findViewById(R.id.textView2);
-		verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(0) + " )");
+		verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(0) + " - " + histoire.getTemps().get(0) + " ) ");
 
 		// vérifie ce que contient la liste de groupes de verbes
 		Log.e("JDV","size : " + histoire.getGroupes().size() + "groupe: " + histoire.getGroupes().get(0));
@@ -131,7 +131,7 @@ public class Histoire_Activity extends Activity {
 							text1.setText(text1.getText() + " " + histoire.getVerbes().get(compteur++) + " " 
 									+ histoire.getPhrases().get(compteur) );
 							if(compteur<=histoire.getVerbes().size()-1)
-								verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(compteur) + " )");
+								verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(compteur) + " - " + histoire.getTemps().get(compteur) + " ) ");
 							//PAS FAIT : Sinon, fin de la partie, affichage des scores et récapitulé des aides, 
 							// enregistrement de la progression dans le xml
 							// déblocage d'autres histoires
