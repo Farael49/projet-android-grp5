@@ -61,6 +61,7 @@ public class XMLStoryLoader
 			Element histoire_elt = (Element)i.next();
 			//On récupère les éléments stockés dans le xml
 			String titre = histoire_elt.getAttributeValue("title");
+			String histoireADebloquer = histoire_elt.getAttributeValue("debloque");
 			Element phrases = histoire_elt.getChild("phrases");
 			List phrase_list = phrases.getChildren("value"); 
 			//On crée un Iterator sur notre liste
@@ -95,7 +96,7 @@ public class XMLStoryLoader
 			}
 			System.out.println("ensemble des phrases : " + contenu_phrases);
 			// crée une histoire avec les données récupérées
-			histoire = new Histoire(titre, contenu_phrases, contenu_verbes, attributs_groupes, attributs_temps, attributs_infinitifs);
+			histoire = new Histoire(titre, histoireADebloquer, contenu_phrases, contenu_verbes, attributs_groupes, attributs_temps, attributs_infinitifs);
 			//ajoute l'histoire dans la liste listeHistoires
 			listeHistoires.add(histoire);
 		}

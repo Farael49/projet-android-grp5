@@ -1,18 +1,23 @@
 package iut.projet.activities;
 
 import iut.projet.jardindesverbes.Histoire;
+import iut.projet.jardindesverbes.ObjetHistoire;
 import iut.projet.jardindesverbes.R;
+import iut.projet.jardindesverbes.Utils;
 import iut.projet.jardindesverbes.XMLStoryLoader;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.opengl.Visibility;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -25,6 +30,8 @@ public class Histoire_Activity extends Activity {
 	private int compteur = 0;
 	private Histoire histoire;
 	private boolean histoire_finie = false;
+	private int score = 0;
+	private String nomObjet = "";
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
@@ -37,7 +44,7 @@ public class Histoire_Activity extends Activity {
 
 		//Récupère le nom de l'objet choisit 
 		Bundle extras = getIntent().getExtras();
-		String nomObjet = extras.getString("story");
+		nomObjet = extras.getString("story");
 
 		Log.e("JDV",nomObjet);
 		//System.out.println(list.get(0).getTitre());
@@ -79,19 +86,40 @@ public class Histoire_Activity extends Activity {
 		// EditText où l'utilisateur écrit le verbe conjugué
 		final EditText entreeUtilisateur;
 		entreeUtilisateur = (EditText) this.findViewById(R.id.editText1);
+		entreeUtilisateur.setOnTouchListener(new OnTouchListener() {
 
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if(histoire_finie){
+					Log.e("JDV", "Affichage des résultats");
+					
+					//après l'affichage des résultats et des aides
+					// retour au jardin
+					Intent returnIntent = new Intent();
+					returnIntent.putExtra("nomObjet",nomObjet);
+				//	returnIntent.putExtra("score",score);
+					setResult(RESULT_OK,returnIntent);   
+					finish();
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+		});
 		//Listener sur le bouton "Done" ( en français " OK ", peut être amené à changer)
 		entreeUtilisateur.setOnEditorActionListener(new OnEditorActionListener() {        
 
 
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
 				if(actionId==EditorInfo.IME_ACTION_DONE){
 					Log.e("JDV", "verbe en cours de traitement");
 					// Vérifie que l'histoire n'est pas terminée avant de chercher dans la liste pour éviter un IndexOutOfBounds
 					if(!histoire_finie){
 						// Si l'entrée correspond au verbe conjugué et que tous les verbes n'ont pas été trouvés : affiche le verbe et continue l'histoire
-						if(verificationConjugaison(entreeUtilisateur.getText().toString(), compteur)){
+						if(verificationConjugaison(entreeUtilisateur.getText().toString().trim(), compteur)){
 							Log.e("JDV", "entrée correcte");	
 							// incrèmente compteur après l'avoir utilisé pour le verbe, et affiche la phrase suivante
 							text1.setText(text1.getText() + " " + histoire.getVerbes().get(compteur++) + " " 
@@ -102,19 +130,22 @@ public class Histoire_Activity extends Activity {
 							// enregistrement de la progression dans le xml
 							// déblocage d'autres histoires
 							else{
-								verbeInfinitif.setText("");
-								histoire_finie = true;
+								verbeInfinitif.setVisibility(4);
+								histoire_finie = true;			
 							}
 						}
 						// Sinon l'entrée est fausse, la gestion des erreurs entre en jeu
 						else {
 							Log.e("JDV", "entrée incorrecte");	
 						}
-						// réinitialise le champs après chaque validation (bouton "OK" ) de l'utilisateur
-						entreeUtilisateur.setText("");
+
 					}
-
-
+					// réinitialise le champs après chaque validation (bouton "OK" ) de l'utilisateur
+					entreeUtilisateur.setText("");
+					//
+					if(histoire_finie){
+						entreeUtilisateur.setText("Appuyez pour valider");
+					}
 				}
 				return false;
 			}
@@ -141,6 +172,7 @@ public class Histoire_Activity extends Activity {
 		// sinon
 		return false;
 	}
+
 
 
 	long lastPress;

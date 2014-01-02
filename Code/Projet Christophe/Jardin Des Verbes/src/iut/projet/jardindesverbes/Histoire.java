@@ -1,6 +1,5 @@
 package iut.projet.jardindesverbes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Histoire {
@@ -9,6 +8,10 @@ public class Histoire {
 		return titre;
 	}
 
+	public String getHistoireADebloquer() {
+		return histoireADebloquer;
+	}
+	
 	public List getVerbes() {
 		return verbes;
 	}
@@ -30,14 +33,16 @@ public class Histoire {
 	}
 
 	private String titre;
+	private String histoireADebloquer;
 	private List verbes;
 	private List phrases;
 	private List groupes;
 	private List temps;
 	private List infinitifs;
 	
-	public Histoire(String titre, List listPhrases, List listVerbes, List groupes, List temps, List infinitifs){
+	public Histoire(String titre, String histoireADebloquer, List listPhrases, List listVerbes, List groupes, List temps, List infinitifs){
 		this.titre = titre;
+		this.histoireADebloquer = histoireADebloquer;
 		this.phrases = listPhrases;
 		this.verbes = listVerbes;
 		this.groupes = groupes;

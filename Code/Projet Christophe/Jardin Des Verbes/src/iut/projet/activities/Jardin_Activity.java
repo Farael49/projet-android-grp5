@@ -4,6 +4,7 @@ import iut.projet.jardindesverbes.ObjetHistoire;
 import iut.projet.jardindesverbes.Profil;
 import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
+import iut.projet.jardindesverbes.StoryManager;
 import iut.projet.jardindesverbes.Utils;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -42,6 +44,7 @@ public class Jardin_Activity extends Activity {
 
 		Bundle extras = getIntent().getExtras();
 		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
+		StoryManager.getInstance().loadStory(this, profil.getLesObjets());
 		setObjectBackground();
 		//	Utils.showToastText(this, profil.getLesObjets().get(0).getObjetImageFilename());
 	}
@@ -120,7 +123,7 @@ public class Jardin_Activity extends Activity {
 						Histoire_Activity.class);
 				intent.putExtra("story", hist.getReference());
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+				startActivityForResult(intent,1);
 				Utils.showToastText(this, "Chargement de l'histoire \""+nomObjet+"\"");
 				break;
 			} 
@@ -140,5 +143,58 @@ public class Jardin_Activity extends Activity {
 	}
 
 	 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(resultCode != RESULT_CANCELED){
+			if (requestCode == 1) {
+
+				if(resultCode == RESULT_OK){      
+					Log.e("JDV", "REACHED OK");
+					//String result=data.getStringExtra("result");    
+					// récupère le nom de l'objet, et le score
+					// appelle la fonction storyUnlocked pour savoir s'il doit débloquer une histoire ou non
+					String nomHistoire=data.getStringExtra("nomObjet");  
+					//	String score=data.getStringExtra("score");    
+					String storyToUnlock = StoryManager.getInstance().getHistoire(nomHistoire).getHistoireADebloquer();
+					//storyUnlocked(nomHistoire);
+					if(StoryManager.getInstance().checkLocked(storyToUnlock)){
+						// euh, c'est pas le story manager qu'il faut modifier atm mais bon 
+						StoryManager.getInstance().getObjetHistoire(storyToUnlock).setEtat(ObjetHistoire.AVAILABLE);
+						Utils.showToastText(this, "Histoire "+storyToUnlock+" débloquée");
+					}
+
+					Log.e("JDV","RESULTAT OK");
+				}
+			}
+		}
+		if (resultCode == RESULT_CANCELED) {    
+			//Write your code if there's no result
+			Log.e("JDV","Histoire complétée, pas de résultat à retourner");
+		}
+	}
+
+
+	/*	public boolean storyUnlocked(String nomHistoire){
+		for(ObjetHistoire hist : profil.getLesObjets()){
+			if(hist.getReference().equals(nomHistoire)){
+				String histoireADebloquer = hist.getHistoireADebloquer();
+				for(ObjetHistoire stories : profil.getLesObjets()){
+					if(stories.getReference().equals(histoireADebloquer) && stories.getEtat()==ObjetHistoire.LOCKED){
+						Utils.showToastText(this, "Histoire "+stories.getReference()+" débloquée");
+						// XMLWriter pour débloquer l'histoire dans le profil.
+						stories.setEtat(ObjetHistoire.AVAILABLE);
+
+					}
+				}
+				//Histoire non débloquée
+				Intent intent = new Intent(Jardin_Activity.this,
+						Histoire_Activity.class);
+				intent.putExtra("story", hist.getReference());
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivityForResult(intent,1);
+
+				break;
+			} 
+		}
+	}*/
 
 }
