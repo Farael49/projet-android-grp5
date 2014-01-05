@@ -15,11 +15,11 @@ public class StoryManager {
 	public List<ObjetHistoire> lesObjetsHistoires;
 
 
-	public void loadStory(Context context, List objetHistoire) {
+	public void loadStory(Context context, String username) {
 		InputStream is = context.getResources().openRawResource(R.raw.histoires);
 		XMLStoryLoader xmlStories = new XMLStoryLoader();
 		this.lesHistoires = xmlStories.load(is);
-		this.lesObjetsHistoires = objetHistoire;
+		this.lesObjetsHistoires = ProfilManager.getInstance().getProfil(username).getLesObjets();
 	}
 
 	/**
@@ -29,17 +29,12 @@ public class StoryManager {
 	 * @param profilVerif
 	 * @return exists
 	 */
-	public boolean checkLocked(String histoireVerif){
+	public boolean checkExists(String histoireVerif){
 		Histoire story = this.getHistoire(histoireVerif);
 		for(ObjetHistoire objet : lesObjetsHistoires){
+			System.out.println(story.getTitre() + " - " + objet.getReference());
 			if(story.getTitre().equals(objet.getReference())){
-				if(objet.getEtat()==ObjetHistoire.LOCKED){
-					return true;
-				}
-				else{
-					return false;
-				}
-
+				return true;
 			}
 		}
 		//n'arrive jamais
@@ -54,7 +49,7 @@ public class StoryManager {
 		}
 		return null; 	
 	}
-	
+
 	public ObjetHistoire getObjetHistoire(String nomHistoire){
 		for(ObjetHistoire histoire : lesObjetsHistoires){
 			if(nomHistoire.equals(histoire.getReference())){

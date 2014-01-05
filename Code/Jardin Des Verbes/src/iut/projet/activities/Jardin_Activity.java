@@ -6,6 +6,7 @@ import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
 import iut.projet.jardindesverbes.StoryManager;
 import iut.projet.jardindesverbes.Utils;
+import iut.projet.jardindesverbes.XMLProfilWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,7 +45,7 @@ public class Jardin_Activity extends Activity {
 
 		Bundle extras = getIntent().getExtras();
 		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
-		StoryManager.getInstance().loadStory(this, profil.getLesObjets());
+		StoryManager.getInstance().loadStory(this, profil.getUsername());
 		setObjectBackground();
 		//	Utils.showToastText(this, profil.getLesObjets().get(0).getObjetImageFilename());
 	}
@@ -149,52 +150,36 @@ public class Jardin_Activity extends Activity {
 
 				if(resultCode == RESULT_OK){      
 					Log.e("JDV", "REACHED OK");
-					//String result=data.getStringExtra("result");    
 					// récupère le nom de l'objet, et le score
 					// appelle la fonction storyUnlocked pour savoir s'il doit débloquer une histoire ou non
 					String nomHistoire=data.getStringExtra("nomObjet");  
 					//	String score=data.getStringExtra("score");    
 					String storyToUnlock = StoryManager.getInstance().getHistoire(nomHistoire).getHistoireADebloquer();
-					//storyUnlocked(nomHistoire);
-					if(StoryManager.getInstance().checkLocked(storyToUnlock)){
-						// euh, c'est pas le story manager qu'il faut modifier atm mais bon 
-						StoryManager.getInstance().getObjetHistoire(storyToUnlock).setEtat(ObjetHistoire.AVAILABLE);
+					Log.e("JDV",nomHistoire + " -> " + storyToUnlock);
+					Log.e("JDV",""+StoryManager.getInstance().checkExists(storyToUnlock));
+					//Si l'histoire a débloquer n'est pas encore disponible, on l'ajoute
+					if(!StoryManager.getInstance().checkExists(storyToUnlock)){
+						profil.getLesObjets().add(new ObjetHistoire(storyToUnlock,ObjetHistoire.AVAILABLE));
 						Utils.showToastText(this, "Histoire "+storyToUnlock+" débloquée");
+						// plus qu'à s'occuper de l'histoire finie et la passer en DONE
+					}
+					for(ObjetHistoire hist : profil.getLesObjets()){
+						if(hist.getReference().equals(nomHistoire))
+							if(hist.getEtat()==ObjetHistoire.AVAILABLE)
+								hist.setEtat(ObjetHistoire.DONE);
 					}
 
+					XMLProfilWriter.saveProfils(this,ProfilManager.getInstance().getProfils());
 					Log.e("JDV","RESULTAT OK");
 				}
 			}
+			setObjectBackground();
 		}
 		if (resultCode == RESULT_CANCELED) {    
-			//Write your code if there's no result
-			Log.e("JDV","Histoire complétée, pas de résultat à retourner");
+			//Histoire non complétée jusqu'au bout
+			Log.e("JDV","Histoire terminée, pas de résultat à retourner");
 		}
 	}
 
-
-	/*	public boolean storyUnlocked(String nomHistoire){
-		for(ObjetHistoire hist : profil.getLesObjets()){
-			if(hist.getReference().equals(nomHistoire)){
-				String histoireADebloquer = hist.getHistoireADebloquer();
-				for(ObjetHistoire stories : profil.getLesObjets()){
-					if(stories.getReference().equals(histoireADebloquer) && stories.getEtat()==ObjetHistoire.LOCKED){
-						Utils.showToastText(this, "Histoire "+stories.getReference()+" débloquée");
-						// XMLWriter pour débloquer l'histoire dans le profil.
-						stories.setEtat(ObjetHistoire.AVAILABLE);
-
-					}
-				}
-				//Histoire non débloquée
-				Intent intent = new Intent(Jardin_Activity.this,
-						Histoire_Activity.class);
-				intent.putExtra("story", hist.getReference());
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivityForResult(intent,1);
-
-				break;
-			} 
-		}
-	}*/
 
 }
