@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<verbes>
+    <verbe infinitif="Pousser" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>pousse</value>
+	        <value>pousses</value>
+	        <value>pousse</value>
+	        <value>poussons</value>
+	        <value>poussez</value>
+	        <value>poussent</value>
+        </conjugaison>
+    </verbe>
+    
+    <verbe infinitif="Être" groupe="3" temps="Present">
+        <conjugaison>
+	        <value>suis</value>
+	        <value>es</value>
+	        <value>est</value>
+	        <value>sommes</value>
+	        <value>êtes</value>
+	        <value>sont</value>
+        </conjugaison>
+    </verbe>
+    
+    <verbe infinitif="Pouvoir" groupe="3" temps="Present">
+        <conjugaison>
+	        <value>peux</value>
+	        <value>peux</value>
+	        <value>peut</value>
+	        <value>pouvons</value>
+	        <value>pouvez</value>
+	        <value>peuvent</value>
+        </conjugaison>
+    </verbe>
+    
+    <verbe infinitif="Régaler" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>régale</value>
+	        <value>régales</value>
+	        <value>régale</value>
+	        <value>régalons</value>
+	        <value>régalez</value>
+	        <value>régalent</value>
+        </conjugaison>
+    </verbe>
+ 
+    <verbe infinitif="Posséder" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>possède</value>
+	        <value>possèdes</value>
+	        <value>possède</value>
+	        <value>possédons</value>
+	        <value>possédez</value>
+	        <value>possèdent</value>
+        </conjugaison>
+    </verbe>
+    
+   	<verbe infinitif="Transporter" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>transporte</value>
+	        <value>transportes</value>
+	        <value>transporte</value>
+	        <value>transportons</value>
+	        <value>transportez</value>
+	        <value>transportent</value>
+        </conjugaison>
+    </verbe>
+    
+   	<verbe infinitif="Construire" groupe="3" temps="Present">
+        <conjugaison>
+	        <value>construis</value>
+	        <value>construis</value>
+	        <value>construit</value>
+	        <value>construisons</value>
+	        <value>construisez</value>
+	        <value>construisent</value>
+        </conjugaison>
+    </verbe>
+    
+    <verbe infinitif="Parcourir" groupe="3" temps="Present">
+        <conjugaison>
+	        <value>parcours</value>
+	        <value>parcours</value>
+	        <value>parcourt</value>
+	        <value>parcourons</value>
+	        <value>parcourez</value>
+	        <value>parcourent</value>
+        </conjugaison>
+    </verbe>
+    
+    <verbe infinitif="Souhaiter" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>souhaite</value>
+	        <value>souhaites</value>
+	        <value>souhaite</value>
+	        <value>souhaitons</value>
+	        <value>souhaitez</value>
+	        <value>souhaitent</value>
+        </conjugaison>
+    </verbe>
+   	
+	<verbe infinitif="Exister" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>existe</value>
+	        <value>existes</value>
+	        <value>existe</value>
+	        <value>existons</value>
+	        <value>existez</value>
+	        <value>existent</value>
+        </conjugaison>
+    </verbe>
+    
+	<verbe infinitif="Produire" groupe="3" temps="Present">
+        <conjugaison>
+	        <value>produis</value>
+	        <value>produis</value>
+	        <value>produit</value>
+	        <value>produisons</value>
+	        <value>produisez</value>
+	        <value>produisent</value>
+        </conjugaison>
+    </verbe>
+	
+	<verbe infinitif="Avoir" groupe="3" temps="Present">
+        <conjugaison>
+	        <value>ai</value>
+	        <value>as</value>
+	        <value>a</value>
+	        <value>avons</value>
+	        <value>avez</value>
+	        <value>ont</value>
+        </conjugaison>
+    </verbe>
+	
+	<verbe infinitif="Balancer" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>balance</value>
+	        <value>balances</value>
+	        <value>balance</value>
+	        <value>balançons</value>
+	        <value>balancez</value>
+	        <value>balancent</value>
+        </conjugaison>
+    </verbe>
+	
+	<verbe infinitif="S'amuser" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>m'amuse</value>
+	        <value>t'amuses</value>
+	        <value>s'amuse</value>
+	        <value>nous amusons</value>
+	        <value>vous amusez</value>
+	        <value>s'amusent</value>
+        </conjugaison>
+    </verbe>
+    
+	<verbe infinitif="Jouer" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>joue</value>
+	        <value>joues</value>
+	        <value>joue</value>
+	        <value>jouons</value>
+	        <value>jouez</value>
+	        <value>jouent</value>
+        </conjugaison>
+    </verbe>
+	
+	<verbe infinitif="Flotter" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>flotte</value>
+	        <value>flottes</value>
+	        <value>flotte</value>
+	        <value>flottons</value>
+	        <value>flottez</value>
+	        <value>flottent</value>
+        </conjugaison>
+    </verbe>
+	
+	<verbe infinitif="Trouver" groupe="1" temps="Present">
+        <conjugaison>
+	        <value>t</value>
+	        <value>flottes</value>
+	        <value>flotte</value>
+	        <value>flottons</value>
+	        <value>flottez</value>
+	        <value>flottent</value>
+        </conjugaison>
+    </verbe>
+	
+</verbes>

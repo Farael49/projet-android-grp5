@@ -78,6 +78,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Debug, VIDER les profils" />
+            <Button
+                    android:id="@+id/Profil_afficherDialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Debug, Afficher le dialogue d'aide"/>
             
         </LinearLayout>
     </LinearLayout>
