@@ -29,9 +29,11 @@ import android.widget.Toast;
 
 public class Jardin_Activity extends Activity {
 
+	private static final int SCORE_PAR_DEFAUT = 0;
 	ImageButton ballon, train;
 	//List<ObjetHistoire> nomsObjets;
 	Profil profil;
+	int newExperience;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -151,9 +153,9 @@ public class Jardin_Activity extends Activity {
 				if(resultCode == RESULT_OK){      
 					Log.e("JDV", "REACHED OK");
 					// récupère le nom de l'objet, et le score
-					// appelle la fonction storyUnlocked pour savoir s'il doit débloquer une histoire ou non
 					String nomHistoire=data.getStringExtra("nomObjet");  
-					//	String score=data.getStringExtra("score");    
+					int score=data.getIntExtra("scoreHistoire", SCORE_PAR_DEFAUT);  
+					// appelle la fonction getHistoireADebloquer pour savoir s'il doit débloquer une histoire ou non
 					String storyToUnlock = StoryManager.getInstance().getHistoire(nomHistoire).getHistoireADebloquer();
 					Log.e("JDV",nomHistoire + " -> " + storyToUnlock);
 					Log.e("JDV",""+StoryManager.getInstance().checkExists(storyToUnlock));
@@ -168,6 +170,19 @@ public class Jardin_Activity extends Activity {
 							if(hist.getEtat()==ObjetHistoire.AVAILABLE)
 								hist.setEtat(ObjetHistoire.DONE);
 					}
+					// ajoute l'expérience actuelle du joueur et le score obtenu avec l'histoire
+					newExperience = score + profil.getExperience();
+					// gestion des niveaux selon l'expérience
+					if( newExperience >= 100){
+						while( newExperience >= 100){
+							newExperience = newExperience-100;
+							profil.setNiveau(profil.getNiveau()+1);
+							profil.setExperience(newExperience);
+						}
+					}
+					else{
+						profil.setExperience(newExperience);
+					}
 
 					XMLProfilWriter.saveProfils(this,ProfilManager.getInstance().getProfils());
 					Log.e("JDV","RESULTAT OK");
@@ -176,6 +191,7 @@ public class Jardin_Activity extends Activity {
 			setObjectBackground();
 		}
 		if (resultCode == RESULT_CANCELED) {    
+			Log.e("JDV",profil.toString());
 			//Histoire non complétée jusqu'au bout
 			Log.e("JDV","Histoire terminée, pas de résultat à retourner");
 		}
