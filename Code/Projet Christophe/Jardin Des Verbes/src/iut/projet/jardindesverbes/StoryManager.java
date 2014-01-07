@@ -23,11 +23,7 @@ public class StoryManager {
 	}
 
 	/**
-	 *  Cette méthode vérifie l'existence d'un profil dans la liste.
-	 *  Les profils sont identifiés par leur attribut Username.
-	 *  Retourne TRUE si un profil du même nom existe.
-	 * @param profilVerif
-	 * @return exists
+	 *  Cette méthode vérifie l'existence d'une dans la liste.
 	 */
 	public boolean checkExists(String histoireVerif){
 		Histoire story = this.getHistoire(histoireVerif);
@@ -37,7 +33,6 @@ public class StoryManager {
 				return true;
 			}
 		}
-		//n'arrive jamais
 		return false; 
 	}
 

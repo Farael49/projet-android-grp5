@@ -37,8 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/Profil_ChargerProfilMessage"
                 android:tag="Suplexmentary"
+                android:text="@string/Profil_ChargerProfilMessage"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@android:color/black" />
 
@@ -48,8 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
-                android:tag="Suplexmentary"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:tag="Suplexmentary" />
 
             <LinearLayout
                 android:id="@+id/LayoutBoutons"
@@ -71,15 +71,19 @@
                     android:layout_height="wrap_content"
                     android:tag="Suplexmentary"
                     android:text="@string/Profil_CreerProfilBouton" />
-
             </LinearLayout>
-            
+
             <Button
-                    android:id="@+id/Profil_viderListe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Debug, VIDER les profils" />
-            
+                android:id="@+id/Profil_viderListe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Debug, VIDER les profils" />
+
+            <Button
+                android:id="@+id/Profil_afficherDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Debug, Afficher le dialogue d&apos;aide" />
         </LinearLayout>
     </LinearLayout>
 

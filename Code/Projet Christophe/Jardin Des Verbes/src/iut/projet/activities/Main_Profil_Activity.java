@@ -5,8 +5,12 @@ import iut.projet.jardindesverbes.Profil;
 import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
 import iut.projet.jardindesverbes.Utils;
+import iut.projet.jardindesverbes.Verbe;
+import iut.projet.jardindesverbes.VerbeManager;
+import iut.projet.jardindesverbes.XMLVerbeLoader;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,12 +22,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Main_Profil_Activity extends Activity {
 
 	private EditText profilTextField;
 	private ProfilManager profils;
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class Main_Profil_Activity extends Activity {
 		Button loadProfilButton = (Button) findViewById(R.id.Profil_ChargerProfilButton);
 		Button addProfilButton = (Button) findViewById(R.id.Profil_CreerProfilButton);
 		Button debugProfilButton = (Button) findViewById(R.id.Profil_viderListe);
+		Button debugDialogButton = (Button) findViewById(R.id.Profil_afficherDialog);
 		
 		profilTextField = (EditText) findViewById(R.id.Profil_ChargerProfilTextField);
 		
@@ -65,6 +72,12 @@ public class Main_Profil_Activity extends Activity {
 		debugProfilButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
 					debugRemoveListAction();
+			}
+		});
+		
+		debugDialogButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				debugAfficherDialogAction();
 			}
 		});
 		
@@ -94,7 +107,7 @@ public class Main_Profil_Activity extends Activity {
 			}
 			
 		} else {
-			Utils.showToastText(this, "Mets ton nom !");
+			Utils.showToastText(this, "Mes ton nom !");
 		}
 	}
 	
@@ -124,6 +137,36 @@ public class Main_Profil_Activity extends Activity {
 		profils.viderListe(this);
 	}
 	
+	private void debugAfficherDialogAction(){
+		final Dialog dialog = new Dialog(this);
+		
+		VerbeManager verManager = VerbeManager.getInstance();
+		verManager.loadVerbes(this);
+		Verbe verbe = verManager.getVerbe("Balancer", "Present");		
+		dialog.setContentView(R.layout.aide_1);
+		dialog.setTitle("Un petit coup de main ?");
+
+		// set the custom dialog components - text, image and button
+		TextView aide_Titre = (TextView) dialog.findViewById(R.id.aide_titre);
+		TextView aide_Conjugaison = (TextView) dialog.findViewById(R.id.aide_conjugaison);
+		
+		aide_Titre.setText("Conjugaison du verbe '"+verbe.getInfinitif()+"' au temps :"+verbe.getTemps());
+		
+		aide_Conjugaison.setText(verbe.getConjugaison());
+
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		// if button is clicked, close the custom dialog
+		
+		dialogButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
