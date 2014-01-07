@@ -64,7 +64,7 @@ public class XMLProfilWriter {
 				root.appendChild(El_profil);
 
 				Element El_niveau = document.createElement(LEVEL);
-				El_niveau.setTextContent(Integer.toString(p.getExperience()));
+				El_niveau.setTextContent(Integer.toString(p.getNiveau()));
 				El_profil.appendChild(El_niveau);
 
 				Element El_EXP = document.createElement(XP);

@@ -22,6 +22,7 @@ import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -31,16 +32,19 @@ public class Histoire_Activity extends Activity {
 	private int compteur = 0;
 	private Histoire histoire;
 	private boolean histoire_finie = false;
-	private int score = 0;
+	private int scoreFinal = 0;
 	private String nomObjet = "";
+	private int scoreVerbe = 40;
+	private int NB_ESSAIS = 3;
+	private int nbTentatives;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
-		
+
 		// Police d'écriture
 		Police police = new Police(getApplicationContext());
 		police.setupLayoutTypefaces(getWindow().getDecorView());
-		
+
 		// Récupère l'inputStream, données du fichier histoires.xml
 		InputStream is = getResources().openRawResource(R.raw.histoires);
 		XMLStoryLoader xmlStories = new XMLStoryLoader();
@@ -73,39 +77,40 @@ public class Histoire_Activity extends Activity {
 		fl.setBackgroundResource(resID);
 
 		// Récupère le TextView utilisé pour afficher l'histoire
-		final TextView text1 = (TextView) this.findViewById(R.id.textView1);
+		final TextView textHistoire = (TextView) this.findViewById(R.id.texteHistoire);
 		Log.e("JDV","phrase : "+histoire.getPhrases().get(0));
 		//Affiche le début de l'histoire jusqu'au premier verbe
 		String texte = (String) histoire.getPhrases().get(0);
-		text1.setText(texte);
+		textHistoire.setText(texte);
 
 		// Affiche dans un second textview (au dessus de l'edittext) l'infinitif du 1er verbe à conjuguer
-		final TextView verbeInfinitif =  (TextView) this.findViewById(R.id.textView2);
+		final TextView verbeInfinitif =  (TextView) this.findViewById(R.id.verbeEtTemps);
 		verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(0) + " - " + histoire.getTemps().get(0) + " ) ");
 
+		final TextView scoreTotal = (TextView) this.findViewById(R.id.scoreTotal);
+		scoreTotal.setText("Score Total : 0");
+		final TextView scoreDuVerbe = (TextView) this.findViewById(R.id.scoreVerbe);
+		scoreDuVerbe.setText("Points pour ce verbe : 40");
 		// vérifie ce que contient la liste de groupes de verbes
 		Log.e("JDV","size : " + histoire.getGroupes().size() + "groupe: " + histoire.getGroupes().get(0));
 
 		for(int d=0; d<histoire.getGroupes().size();d++)
 			System.out.println(histoire.getGroupes().get(d));
 
+		//Correspond au textView utilisé pour fenetre_score
+		final TextView score = (TextView) this.findViewById(R.id.score);
+		final LinearLayout fenetreScore = (LinearLayout) this.findViewById(R.id.fenetreScores);
 		// EditText où l'utilisateur écrit le verbe conjugué
 		final EditText entreeUtilisateur;
-		entreeUtilisateur = (EditText) this.findViewById(R.id.editText1);
+		entreeUtilisateur = (EditText) this.findViewById(R.id.entreeUtilisateur);
 		entreeUtilisateur.setOnTouchListener(new OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if(histoire_finie){
 					Log.e("JDV", "Affichage des résultats");
-					
-					//après l'affichage des résultats et des aides
-					// retour au jardin
-					Intent returnIntent = new Intent();
-					returnIntent.putExtra("nomObjet",nomObjet);
-				//	returnIntent.putExtra("score",score);
-					setResult(RESULT_OK,returnIntent);   
-					finish();
+					fenetreScore.setVisibility(View.VISIBLE);
+					score.setText("Vous avez obtenu "+scoreFinal+" points ! \n\n\nBravo !!");
 					return true;
 				}
 				else{
@@ -124,31 +129,67 @@ public class Histoire_Activity extends Activity {
 					Log.e("JDV", "verbe en cours de traitement");
 					// Vérifie que l'histoire n'est pas terminée avant de chercher dans la liste pour éviter un IndexOutOfBounds
 					if(!histoire_finie){
+
+						Log.e("JDV", ""+nbTentatives);
 						// Si l'entrée correspond au verbe conjugué et que tous les verbes n'ont pas été trouvés : affiche le verbe et continue l'histoire
 						if(verificationConjugaison(entreeUtilisateur.getText().toString().trim(), compteur)){
 							Log.e("JDV", "entrée correcte");	
+							Log.e("JDV", "pre score "+scoreFinal);
+							//ajout du score obtenu pour ce verbe au score final
+							scoreFinal += scoreVerbe;
+
+							Log.e("JDV", "score added "+scoreFinal);
+
+							//remise à zéro du nombre de tentatives
+							nbTentatives = 0;
+							//remise au maximim du scoreVerbe;
+							scoreVerbe = 40;
+
 							// incrèmente compteur après l'avoir utilisé pour le verbe, et affiche la phrase suivante
-							text1.setText(text1.getText() + " " + histoire.getVerbes().get(compteur++) + " " 
+							textHistoire.setText(textHistoire.getText() + " " + histoire.getVerbes().get(compteur++) + " " 
 									+ histoire.getPhrases().get(compteur) );
-							if(compteur<=histoire.getVerbes().size()-1)
+							if(compteur<=histoire.getVerbes().size()-1){
 								verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(compteur) + " - " + histoire.getTemps().get(compteur) + " ) ");
+							}
+							else{
+								verbeInfinitif.setVisibility(View.INVISIBLE);
+								histoire_finie = true;			
+							}
 							//PAS FAIT : Sinon, fin de la partie, affichage des scores et récapitulé des aides, 
 							// enregistrement de la progression dans le xml
 							// déblocage d'autres histoires
-							else{
-								verbeInfinitif.setVisibility(4);
-								histoire_finie = true;			
-							}
+
 						}
 						// Sinon l'entrée est fausse, la gestion des erreurs entre en jeu
 						else {
+							nbTentatives++;
+							if(nbTentatives<2)
+								scoreVerbe = 40;
+							if(nbTentatives==2)
+								scoreVerbe = 25;
+							else if(nbTentatives>2)
+								scoreVerbe = 15;
 							Log.e("JDV", "entrée incorrecte");	
+							// Première erreur, notifié au joueur
+							if(nbTentatives==1){
+								Toast toast = Toast.makeText(getBaseContext(), "Ce n'est pas ça, essaies encore !", MS_TIME_TO_EXIT);
+								toast.show();
+							}	
+							else if(nbTentatives==2){
+								//appel de la première aide
+								// ficheAide1();
+							}
+							else if (nbTentatives==3){
+								//						Utils.showToastText(getBaseContext(), "Profite des aides pour progresser !");
+							}
 						}
 
 					}
+
 					// réinitialise le champs après chaque validation (bouton "OK" ) de l'utilisateur
 					entreeUtilisateur.setText("");
-					//
+					scoreTotal.setText("Score total : "+scoreFinal);
+					scoreDuVerbe.setText("Points pour ce verbe : "+scoreVerbe);
 					if(histoire_finie){
 						entreeUtilisateur.setText("Appuyez pour valider");
 					}
@@ -159,6 +200,13 @@ public class Histoire_Activity extends Activity {
 
 	}
 
+	public void retourJardin(View v) {
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("nomObjet",nomObjet);
+		returnIntent.putExtra("scoreHistoire",scoreFinal);
+		setResult(RESULT_OK,returnIntent);   
+		finish();					
+	}
 
 
 	@Override
@@ -178,7 +226,6 @@ public class Histoire_Activity extends Activity {
 		// sinon
 		return false;
 	}
-
 
 
 	long lastPress;
