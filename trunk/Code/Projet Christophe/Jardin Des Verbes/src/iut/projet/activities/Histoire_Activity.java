@@ -5,12 +5,16 @@ import iut.projet.jardindesverbes.ObjetHistoire;
 import iut.projet.jardindesverbes.Police;
 import iut.projet.jardindesverbes.R;
 import iut.projet.jardindesverbes.Utils;
+import iut.projet.jardindesverbes.Verbe;
+import iut.projet.jardindesverbes.VerbeManager;
 import iut.projet.jardindesverbes.XMLStoryLoader;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -35,8 +40,10 @@ public class Histoire_Activity extends Activity {
 	private int scoreFinal = 0;
 	private String nomObjet = "";
 	private int scoreVerbe = 40;
-	private int NB_ESSAIS = 3;
 	private int nbTentatives;
+	private int aide;
+	VerbeManager verManager = VerbeManager.getInstance();
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
@@ -51,6 +58,8 @@ public class Histoire_Activity extends Activity {
 		// Charge la liste des histoires
 		ArrayList<Histoire> list = xmlStories.load(is);
 
+		//charge la liste des verbes d'aide
+		verManager.loadVerbes(this);
 
 		//Récupère le nom de l'objet choisit 
 		Bundle extras = getIntent().getExtras();
@@ -100,6 +109,10 @@ public class Histoire_Activity extends Activity {
 		//Correspond au textView utilisé pour fenetre_score
 		final TextView score = (TextView) this.findViewById(R.id.score);
 		final LinearLayout fenetreScore = (LinearLayout) this.findViewById(R.id.fenetreScores);
+		
+		//Correspond au bouton d'aide qui apparait à partir de 2 erreurs sur un même verbe
+		final Button aideConjugaison = (Button) this.findViewById(R.id.aideConjugaison);
+		
 		// EditText où l'utilisateur écrit le verbe conjugué
 		final EditText entreeUtilisateur;
 		entreeUtilisateur = (EditText) this.findViewById(R.id.entreeUtilisateur);
@@ -118,7 +131,7 @@ public class Histoire_Activity extends Activity {
 				}
 			}
 		});
-		//Listener sur le bouton "Done" ( en français " OK ", peut être amené à changer)
+		//Listener sur le bouton "Done" ( en français " OK ")
 		entreeUtilisateur.setOnEditorActionListener(new OnEditorActionListener() {        
 
 
@@ -133,13 +146,12 @@ public class Histoire_Activity extends Activity {
 						Log.e("JDV", ""+nbTentatives);
 						// Si l'entrée correspond au verbe conjugué et que tous les verbes n'ont pas été trouvés : affiche le verbe et continue l'histoire
 						if(verificationConjugaison(entreeUtilisateur.getText().toString().trim(), compteur)){
-							Log.e("JDV", "entrée correcte");	
-							Log.e("JDV", "pre score "+scoreFinal);
+
 							//ajout du score obtenu pour ce verbe au score final
 							scoreFinal += scoreVerbe;
 
-							Log.e("JDV", "score added "+scoreFinal);
-
+							//On cache le bouton d'aide pour le prochain Verbe
+							aideConjugaison.setVisibility(View.INVISIBLE);
 							//remise à zéro du nombre de tentatives
 							nbTentatives = 0;
 							//remise au maximim du scoreVerbe;
@@ -155,10 +167,6 @@ public class Histoire_Activity extends Activity {
 								verbeInfinitif.setVisibility(View.INVISIBLE);
 								histoire_finie = true;			
 							}
-							//PAS FAIT : Sinon, fin de la partie, affichage des scores et récapitulé des aides, 
-							// enregistrement de la progression dans le xml
-							// déblocage d'autres histoires
-
 						}
 						// Sinon l'entrée est fausse, la gestion des erreurs entre en jeu
 						else {
@@ -175,13 +183,14 @@ public class Histoire_Activity extends Activity {
 								Toast toast = Toast.makeText(getBaseContext(), "Ce n'est pas ça, essaies encore !", MS_TIME_TO_EXIT);
 								toast.show();
 							}	
-							else if(nbTentatives==2){
-								//appel de la première aide
-								// ficheAide1();
+							else if(nbTentatives==2||nbTentatives==3){
+								//appel de l'aide, qui gère selon le nombre de tentatives réalisées l'aide à afficher
+								ficheAide(new View(getBaseContext()));
+								aideConjugaison.setVisibility(View.VISIBLE);
 							}
-							else if (nbTentatives==3){
+						/*	else if (nbTentatives==3){
 								//						Utils.showToastText(getBaseContext(), "Profite des aides pour progresser !");
-							}
+							}*/
 						}
 
 					}
@@ -225,6 +234,57 @@ public class Histoire_Activity extends Activity {
 		}
 		// sinon
 		return false;
+	}
+
+	public void ficheAide(View v){
+
+		int groupe = Integer.parseInt((String) histoire.getGroupes().get(compteur));
+		String temps = (String) histoire.getTemps().get(compteur);
+		String infinitif = (String) histoire.getInfinitifs().get(compteur);
+		String infinitifVerbe = "";
+		Verbe verbe = new Verbe(null, null, 0, null);
+		final Dialog dialog = new Dialog(this);
+		if(nbTentatives==2){
+			for(Verbe verbeCorrespondant : VerbeManager.getInstance().getVerbes()){
+				if(groupe==verbeCorrespondant.getGroupe() && temps.equals(verbeCorrespondant.getTemps()) && !infinitif.equals(verbeCorrespondant.getInfinitif())){
+					verbe = verManager.getVerbe(verbeCorrespondant.getInfinitif(), temps);
+					break;
+				}
+			}
+		}
+		else{
+			/*for(Verbe verbeCorrespondant : VerbeManager.getInstance().getVerbes()){
+				if(groupe==verbeCorrespondant.getGroupe() && temps.equals(verbeCorrespondant.getTemps()) && infinitif.equals(verbeCorrespondant.getInfinitif())){
+					infinitifVerbe=verbeCorrespondant.getInfinitif();
+					break;
+				}
+			}*/
+			verbe = verManager.getVerbe(infinitif, temps);
+		}
+		//Verbe verbe = verManager.getVerbe(infinitifVerbe);
+		
+		dialog.setContentView(R.layout.aide_1);
+		dialog.setTitle("Un petit coup de main ?");
+
+		// set the custom dialog components - text, image and button
+		TextView aide_Titre = (TextView) dialog.findViewById(R.id.aide_titre);
+		TextView aide_Conjugaison = (TextView) dialog.findViewById(R.id.aide_conjugaison);
+
+		aide_Titre.setText("Conjugaison du verbe '"+verbe.getInfinitif()+"' au temps :"+verbe.getTemps());
+
+		aide_Conjugaison.setText(verbe.getConjugaison());
+
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		// if button is clicked, close the custom dialog
+
+		dialogButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+
 	}
 
 
