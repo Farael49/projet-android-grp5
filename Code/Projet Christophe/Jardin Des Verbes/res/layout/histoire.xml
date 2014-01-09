@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="80dp"
+        android:autoText="false"
         android:ems="10"
         android:gravity="center"
         android:inputType="text"
@@ -54,25 +55,28 @@
         <requestFocus />
     </EditText>
 
-    <!-- android:gravity="center" -->
-
-    <Button
-        android:id="@+id/aideConjugaison"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="right|bottom"
-        android:background="@drawable/post_it"
-        android:tag="Suplexmentary"
-        android:text="Consulter l&apos;aide"
-        android:visibility="invisible" 
-        android:onClick="ficheAide"/>
-
+    <!--
+    android:gravity="center" 
+    
     <include
         android:id="@+id/fenetreScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         layout="@layout/fenetre_score"
+        android:visibility="invisible" />
+    -->
+
+    <Button
+        android:id="@+id/aideConjugaison"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/post_it"
+        android:onClick="ficheAide"
+        android:tag="Suplexmentary"
+        android:text="Consulter l&apos;aide"
         android:visibility="invisible" />
 
 </FrameLayout>

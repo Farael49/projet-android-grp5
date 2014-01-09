@@ -66,8 +66,6 @@ public class Histoire_Activity extends Activity {
 		nomObjet = extras.getString("story");
 
 		Log.e("JDV",nomObjet);
-		//System.out.println(list.get(0).getTitre());
-
 
 		// Parcours la liste des histoires pour récupèrer dans "histoire" celle choisie
 		// A voir pour refaire avec un while niveau opti
@@ -103,16 +101,15 @@ public class Histoire_Activity extends Activity {
 		// vérifie ce que contient la liste de groupes de verbes
 		Log.e("JDV","size : " + histoire.getGroupes().size() + "groupe: " + histoire.getGroupes().get(0));
 
-		for(int d=0; d<histoire.getGroupes().size();d++)
-			System.out.println(histoire.getGroupes().get(d));
+
 
 		//Correspond au textView utilisé pour fenetre_score
-		final TextView score = (TextView) this.findViewById(R.id.score);
-		final LinearLayout fenetreScore = (LinearLayout) this.findViewById(R.id.fenetreScores);
-		
+		//final TextView score = (TextView) this.findViewById(R.id.score);
+		//final LinearLayout fenetreScore = (LinearLayout) this.findViewById(R.id.fenetreScores);
+
 		//Correspond au bouton d'aide qui apparait à partir de 2 erreurs sur un même verbe
 		final Button aideConjugaison = (Button) this.findViewById(R.id.aideConjugaison);
-		
+
 		// EditText où l'utilisateur écrit le verbe conjugué
 		final EditText entreeUtilisateur;
 		entreeUtilisateur = (EditText) this.findViewById(R.id.entreeUtilisateur);
@@ -122,8 +119,9 @@ public class Histoire_Activity extends Activity {
 			public boolean onTouch(View v, MotionEvent event) {
 				if(histoire_finie){
 					Log.e("JDV", "Affichage des résultats");
-					fenetreScore.setVisibility(View.VISIBLE);
-					score.setText("Vous avez obtenu "+scoreFinal+" points ! \n\n\nBravo !!");
+					//fenetreScore.setVisibility(View.VISIBLE);
+					//score.setText("Vous avez obtenu "+scoreFinal+" points ! \n\n\nBravo !!");
+					affichageScore(v);
 					return true;
 				}
 				else{
@@ -138,7 +136,7 @@ public class Histoire_Activity extends Activity {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-				if(actionId==EditorInfo.IME_ACTION_DONE){
+				if(actionId==EditorInfo.IME_ACTION_DONE && entreeUtilisateur.getText()!=null){
 					Log.e("JDV", "verbe en cours de traitement");
 					// Vérifie que l'histoire n'est pas terminée avant de chercher dans la liste pour éviter un IndexOutOfBounds
 					if(!histoire_finie){
@@ -188,9 +186,9 @@ public class Histoire_Activity extends Activity {
 								ficheAide(new View(getBaseContext()));
 								aideConjugaison.setVisibility(View.VISIBLE);
 							}
-						/*	else if (nbTentatives==3){
-								//						Utils.showToastText(getBaseContext(), "Profite des aides pour progresser !");
-							}*/
+							else if (nbTentatives>3){
+								Utils.showToastText(getBaseContext(), "Profite des aides pour réussir !");
+							}
 						}
 
 					}
@@ -262,7 +260,7 @@ public class Histoire_Activity extends Activity {
 			verbe = verManager.getVerbe(infinitif, temps);
 		}
 		//Verbe verbe = verManager.getVerbe(infinitifVerbe);
-		
+
 		dialog.setContentView(R.layout.aide_1);
 		dialog.setTitle("Un petit coup de main ?");
 
@@ -281,6 +279,30 @@ public class Histoire_Activity extends Activity {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
+			}
+		});
+		dialog.show();
+
+	}
+
+	public void affichageScore(View v){
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.fenetre_score);
+		dialog.setTitle("Affichage du score");
+
+		// set the custom dialog components - text, image and button
+		TextView score = (TextView) dialog.findViewById(R.id.score);
+
+		score.setText("Vous avez obtenu "+scoreFinal+" points ! \n\n\nBravo !!");
+
+
+		Button validerHistoire = (Button) dialog.findViewById(R.id.finHistoire);
+		// if button is clicked, close the custom dialog
+
+		validerHistoire.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				retourJardin(v);			
 			}
 		});
 		dialog.show();

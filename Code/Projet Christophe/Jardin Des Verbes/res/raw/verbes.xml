@@ -10,26 +10,6 @@
          <value>poussent</value>
       </conjugaison>
    </verbe>
-   <verbe infinitif="Être" groupe="3" temps="Present">
-      <conjugaison>
-         <value>suis</value>
-         <value>es</value>
-         <value>est</value>
-         <value>sommes</value>
-         <value>êtes</value>
-         <value>sont</value>
-      </conjugaison>
-   </verbe>
-   <verbe infinitif="Être" groupe="3" temps="Imparfait">
-      <conjugaison>
-         <value>étais</value>
-         <value>étais</value>
-         <value>était</value>
-         <value>étions</value>
-         <value>étiez</value>
-         <value>étaient</value>
-      </conjugaison>
-   </verbe>
    <verbe infinitif="Pouvoir" groupe="3" temps="Present">
       <conjugaison>
          <value>peux</value>
@@ -198,6 +178,26 @@
          <value>trouvons</value>
          <value>trouvez</value>
          <value>trouvent</value>
+      </conjugaison>
+   </verbe>
+      <verbe infinitif="Être" groupe="3" temps="Present">
+      <conjugaison>
+         <value>suis</value>
+         <value>es</value>
+         <value>est</value>
+         <value>sommes</value>
+         <value>êtes</value>
+         <value>sont</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Être" groupe="3" temps="Imparfait">
+      <conjugaison>
+         <value>étais</value>
+         <value>étais</value>
+         <value>était</value>
+         <value>étions</value>
+         <value>étiez</value>
+         <value>étaient</value>
       </conjugaison>
    </verbe>
 </verbes>
