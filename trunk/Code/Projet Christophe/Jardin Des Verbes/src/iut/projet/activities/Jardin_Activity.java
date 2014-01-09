@@ -53,33 +53,13 @@ public class Jardin_Activity extends Activity {
 	}
 
 	private void setObjectBackground() {
+		// Permet d'assigner à chaque objet son image selon son état
 		ImageButton img;
 
-
-		/*
-		// Permet d'assigner à chaque objet son image et son état
-		nomsObjets = new ArrayList<ObjetHistoire>();
-		//les données de nomObjets doivent normalement provenir du profil XML
-		int i=2;
-		nomsObjets.add(new ObjetHistoire("pomme"));
-		nomsObjets.add(new ObjetHistoire("train",i));
-		nomsObjets.add(new ObjetHistoire("fleurs",i));
-		nomsObjets.add(new ObjetHistoire("toupie",i));
-		nomsObjets.add(new ObjetHistoire("ballon",i));
-		nomsObjets.add(new ObjetHistoire("helico",i));
-		nomsObjets.add(new ObjetHistoire("nuage",i));
-		nomsObjets.add(new ObjetHistoire("arbre",i));
-		 */
 		System.out.println(profil.getLesObjets().size());
 		for(ObjetHistoire obj : profil.getLesObjets()){
 			int resImage = getResources().getIdentifier(obj.getObjetImageFilename(), "drawable", getPackageName());
-			System.out.println(obj.getObjetImageFilename());
-			System.out.println(resImage);
 			int resID = getResources().getIdentifier(obj.getReference(), "id", getPackageName());
-			System.out.println(obj.getReference());
-			System.out.println(resID);
-			//int resID = R.id.pomme;
-			//int resImage = R.drawable.objet_pomme;
 			img = (ImageButton) findViewById(resID);
 			img.setBackgroundResource(resImage);
 		}
