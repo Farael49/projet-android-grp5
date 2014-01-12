@@ -7,66 +7,63 @@
 
     <TextView
         android:id="@+id/texteHistoire"
-        android:layout_width="274dp"
-        android:layout_height="148dp"
+        android:layout_width="400dp"
+        android:layout_height="180dp"
         android:layout_gravity="center_horizontal|center"
         android:tag="Suplexmentary"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/verbeEtTemps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="150dp"
+        android:layout_gravity="bottom|left"
+        android:layout_marginBottom="75dp"
+        android:layout_marginLeft="250dp"
         android:tag="Suplexmentary"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/scoreTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|left"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="150dp"
+        android:background="@drawable/bordure_profil"
         android:tag="Suplexmentary"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/holo_purple"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/scoreVerbe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:layout_marginRight="80dp"
+        android:layout_marginRight="110dp"
+        android:background="@drawable/bordure_profil"
         android:tag="Suplexmentary"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/holo_purple"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/entreeUtilisateur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="80dp"
-        android:autoText="false"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="150dp"
         android:ems="10"
         android:gravity="center"
-        android:inputType="text"
-        android:tag="Suplexmentary" >
+        android:inputType="textVisiblePassword"
+        android:tag="Suplexmentary"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="20sp" >
 
         <requestFocus />
     </EditText>
-
-    <!--
-    android:gravity="center" 
     
-    <include
-        android:id="@+id/fenetreScores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        layout="@layout/fenetre_score"
-        android:visibility="invisible" />
-    -->
-
     <Button
         android:id="@+id/aideConjugaison"
         android:layout_width="160dp"

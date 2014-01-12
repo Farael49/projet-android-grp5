@@ -25,7 +25,11 @@
             </intent-filter>
         </activity>
         <activity android:name="iut.projet.activities.Jardin_Activity"></activity>
-        <activity android:name="iut.projet.activities.Histoire_Activity"></activity>
+        <activity 
+            android:name="iut.projet.activities.Histoire_Activity" 
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
     </application>
 
 </manifest>

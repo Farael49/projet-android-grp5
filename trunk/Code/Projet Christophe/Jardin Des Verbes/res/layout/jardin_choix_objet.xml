@@ -38,8 +38,8 @@
         android:layout_marginTop="370dp"
         android:background="@drawable/objet_train_g"
         android:onClick="startStory" />
-    
-	<ImageButton
+
+    <ImageButton
         android:id="@+id/nuage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,8 +65,8 @@
         android:layout_marginTop="295dp"
         android:background="@drawable/objet_toupie_g"
         android:onClick="startStory" />
-    
-     <ImageButton
+
+    <ImageButton
         android:id="@+id/helico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,8 +74,8 @@
         android:layout_marginTop="-35dp"
         android:background="@drawable/objet_helico_g"
         android:onClick="startStory" />
-     
-       <ImageButton
+
+    <ImageButton
         android:id="@+id/arbre"
         android:layout_width="450dp"
         android:layout_height="wrap_content"

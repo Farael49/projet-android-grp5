@@ -13,21 +13,30 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -37,6 +46,7 @@ public class Histoire_Activity extends Activity {
 	private int compteur = 0;
 	private Histoire histoire;
 	private boolean histoire_finie = false;
+	boolean fiche_parcourues = false;
 	private int scoreFinal = 0;
 	private String nomObjet = "";
 	private int scoreVerbe = 40;
@@ -47,6 +57,14 @@ public class Histoire_Activity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
+
+		SlidingMenu menu = new SlidingMenu(this);
+		menu.setMode(SlidingMenu.LEFT);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
+		menu.setSecondaryMenu(R.layout.menu_score);
+		menu.setBehindOffset(1000);
+
 
 		// Police d'écriture
 		Police police = new Police(getApplicationContext());
@@ -61,9 +79,20 @@ public class Histoire_Activity extends Activity {
 		//charge la liste des verbes d'aide
 		verManager.loadVerbes(this);
 
+		final TextView expUtilisateur = (TextView) this.findViewById(R.id.expUtilisateur);
+		final TextView niveautilisateur = (TextView) this.findViewById(R.id.niveauUtilisateur);
+
 		//Récupère le nom de l'objet choisit 
 		Bundle extras = getIntent().getExtras();
 		nomObjet = extras.getString("story");
+
+		expUtilisateur.setText(extras.getInt("experience") + " / 100");
+		niveautilisateur.setText("Niveau " + extras.getInt("niveau"));
+
+		final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+		progressBar.setProgress(extras.getInt("experience"));
+		progressBar.setMax(100);
+
 
 		Log.e("JDV",nomObjet);
 
@@ -86,13 +115,31 @@ public class Histoire_Activity extends Activity {
 		// Récupère le TextView utilisé pour afficher l'histoire
 		final TextView textHistoire = (TextView) this.findViewById(R.id.texteHistoire);
 		Log.e("JDV","phrase : "+histoire.getPhrases().get(0));
-		//Affiche le début de l'histoire jusqu'au premier verbe
+		// Affiche le début de l'histoire jusqu'au premier verbe
 		String texte = (String) histoire.getPhrases().get(0);
 		textHistoire.setText(texte);
 
 		// Affiche dans un second textview (au dessus de l'edittext) l'infinitif du 1er verbe à conjuguer
 		final TextView verbeInfinitif =  (TextView) this.findViewById(R.id.verbeEtTemps);
 		verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(0) + " - " + histoire.getTemps().get(0) + " ) ");
+
+		// EditText où l'utilisateur écrit le verbe conjugué
+		final EditText entreeUtilisateur;
+		entreeUtilisateur = (EditText) this.findViewById(R.id.entreeUtilisateur);
+
+
+		// Récupère le layout du textView verbeInfinitif pour l'adapter lors de l'affichage du clavier
+		final FrameLayout.LayoutParams verbeParams = (FrameLayout.LayoutParams)verbeInfinitif.getLayoutParams();
+		final int vHeight = verbeParams.height;
+		final int vLeftMargin = verbeParams.leftMargin;
+		final int vRightMargin = verbeParams.rightMargin;
+		final int vBottomMargin = verbeParams.bottomMargin;
+
+		final FrameLayout.LayoutParams entreeUtilisateurParams = (FrameLayout.LayoutParams)entreeUtilisateur.getLayoutParams();
+		final int eHeight = entreeUtilisateurParams.height;
+		final int eLeftMargin = entreeUtilisateurParams.leftMargin;
+		final int eRightMargin = entreeUtilisateurParams.rightMargin;
+		final int eBottomMargin = entreeUtilisateurParams.bottomMargin;
 
 		final TextView scoreTotal = (TextView) this.findViewById(R.id.scoreTotal);
 		scoreTotal.setText("Score Total : 0");
@@ -103,31 +150,61 @@ public class Histoire_Activity extends Activity {
 
 
 
-		//Correspond au textView utilisé pour fenetre_score
-		//final TextView score = (TextView) this.findViewById(R.id.score);
-		//final LinearLayout fenetreScore = (LinearLayout) this.findViewById(R.id.fenetreScores);
+		//Pour détecter lorsque le clavier apparait
+		final View activityRootView = findViewById(android.R.id.content);
+		activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			public void onGlobalLayout() {
+				int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+				if (heightDiff > 100) { // if more than 100 pixels, its probably a keyboard...
+					System.out.println("Checked a keyboard");
+					verbeParams.setMargins(verbeParams.leftMargin, verbeParams.topMargin, verbeParams.rightMargin, 10);
+					entreeUtilisateurParams.setMargins(entreeUtilisateurParams.leftMargin, entreeUtilisateurParams.topMargin, entreeUtilisateurParams.rightMargin, 0);
+					verbeInfinitif.setLayoutParams(verbeParams);
+				}
+				else{
+					System.out.println("KBoard disabled");
+					verbeParams.setMargins(vLeftMargin, vHeight, vRightMargin, vBottomMargin); //substitute parameters for left, top, right, bottom
+					entreeUtilisateurParams.setMargins(entreeUtilisateurParams.leftMargin, entreeUtilisateurParams.topMargin, entreeUtilisateurParams.rightMargin, eBottomMargin);
+					verbeInfinitif.setLayoutParams(verbeParams);
+				}
+			}
+		});
 
 		//Correspond au bouton d'aide qui apparait à partir de 2 erreurs sur un même verbe
 		final Button aideConjugaison = (Button) this.findViewById(R.id.aideConjugaison);
 
-		// EditText où l'utilisateur écrit le verbe conjugué
-		final EditText entreeUtilisateur;
-		entreeUtilisateur = (EditText) this.findViewById(R.id.entreeUtilisateur);
-		entreeUtilisateur.setOnTouchListener(new OnTouchListener() {
+
+
+
+		entreeUtilisateur.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
+			public void onClick(View v) {
+
 				if(histoire_finie){
 					Log.e("JDV", "Affichage des résultats");
 					//fenetreScore.setVisibility(View.VISIBLE);
 					//score.setText("Vous avez obtenu "+scoreFinal+" points ! \n\n\nBravo !!");
 					affichageScore(v);
-					return true;
+					if(!fiche_parcourues){
+						for(int i=0; i<compteur; i++){
+							String temps = (String) histoire.getTemps().get(i);
+							String infinitif = (String) histoire.getInfinitifs().get(i);
+							Verbe verbe = verManager.getVerbe(infinitif, temps);
+							ficheAide(v, verbe);
+							fiche_parcourues = true;
+						}
+					}
 				}
 				else{
-					return false;
+					// adapte la marge en raison du clavier
+
+					//		params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, 0); //substitute parameters for left, top, right, bottom
+					//		verbeInfinitif.setLayoutParams(params);
 				}
 			}
+
+
 		});
 		//Listener sur le bouton "Done" ( en français " OK ")
 		entreeUtilisateur.setOnEditorActionListener(new OnEditorActionListener() {        
@@ -135,7 +212,9 @@ public class Histoire_Activity extends Activity {
 
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
+				//params.setMargins(leftMargin, height, rightMargin, bottomMargin);
+				//verbeInfinitif.setLayoutParams(params);
+				//(int) convertDpToPixel(75, getApplicationContext())
 				if(actionId==EditorInfo.IME_ACTION_DONE && entreeUtilisateur.getText()!=null){
 					Log.e("JDV", "verbe en cours de traitement");
 					// Vérifie que l'histoire n'est pas terminée avant de chercher dans la liste pour éviter un IndexOutOfBounds
@@ -187,7 +266,8 @@ public class Histoire_Activity extends Activity {
 								aideConjugaison.setVisibility(View.VISIBLE);
 							}
 							else if (nbTentatives>3){
-								Utils.showToastText(getBaseContext(), "Profite des aides pour réussir !");
+								Toast toast = Toast.makeText(getBaseContext(), "Profite de l'aide pour réussir !", MS_TIME_TO_EXIT);
+								toast.show();
 							}
 						}
 
@@ -199,6 +279,7 @@ public class Histoire_Activity extends Activity {
 					scoreDuVerbe.setText("Points pour ce verbe : "+scoreVerbe);
 					if(histoire_finie){
 						entreeUtilisateur.setText("Appuyez pour valider");
+						entreeUtilisateur.setFocusable(false);
 					}
 				}
 				return false;
@@ -251,18 +332,38 @@ public class Histoire_Activity extends Activity {
 			}
 		}
 		else{
-			/*for(Verbe verbeCorrespondant : VerbeManager.getInstance().getVerbes()){
-				if(groupe==verbeCorrespondant.getGroupe() && temps.equals(verbeCorrespondant.getTemps()) && infinitif.equals(verbeCorrespondant.getInfinitif())){
-					infinitifVerbe=verbeCorrespondant.getInfinitif();
-					break;
-				}
-			}*/
 			verbe = verManager.getVerbe(infinitif, temps);
 		}
 		//Verbe verbe = verManager.getVerbe(infinitifVerbe);
 
 		dialog.setContentView(R.layout.aide_1);
 		dialog.setTitle("Un petit coup de main ?");
+
+		// set the custom dialog components - text, image and button
+		TextView aide_Titre = (TextView) dialog.findViewById(R.id.aide_titre);
+		TextView aide_Conjugaison = (TextView) dialog.findViewById(R.id.aide_conjugaison);
+
+		aide_Titre.setText("Conjugaison du verbe '"+verbe.getInfinitif()+"' au temps : "+verbe.getTemps());
+
+		aide_Conjugaison.setText(verbe.getConjugaison());
+		aide_Conjugaison.setX(300);
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		// if button is clicked, close the custom dialog
+
+		dialogButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+	}
+	public void ficheAide(View v, Verbe verbe){
+
+		final Dialog dialog = new Dialog(this);
+
+		dialog.setContentView(R.layout.aide_1);
+		dialog.setTitle("Récapitulatif des verbes");
 
 		// set the custom dialog components - text, image and button
 		TextView aide_Titre = (TextView) dialog.findViewById(R.id.aide_titre);
@@ -282,13 +383,12 @@ public class Histoire_Activity extends Activity {
 			}
 		});
 		dialog.show();
-
 	}
 
 	public void affichageScore(View v){
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.fenetre_score);
-		dialog.setTitle("Affichage du score");
+		dialog.setTitle("Votre score");
 
 		// set the custom dialog components - text, image and button
 		TextView score = (TextView) dialog.findViewById(R.id.score);
@@ -324,6 +424,15 @@ public class Histoire_Activity extends Activity {
 			super.onBackPressed();
 		}
 	}
+
+	public static float convertDpToPixel(float dp, Context context){
+		Resources resources = context.getResources();
+		DisplayMetrics metrics = resources.getDisplayMetrics();
+		float px = dp * (metrics.densityDpi / 160f);
+		return px;
+	}
+
+
 
 }
 

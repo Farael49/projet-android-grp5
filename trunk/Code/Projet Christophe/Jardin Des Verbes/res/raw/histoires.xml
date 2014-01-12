@@ -55,15 +55,15 @@
 			<value>un gros ballon de plage, avec lequel je</value>
 			<value>en vacances au bord de la mer. Il</value>
 			<value>très bien dans la mer, même avec moi dessus ! Malheureusement, un jour de départ, je ne le</value>
-			<value>plus : il</value>
-			<value>!</value>
+			<value>plus : il n'</value>
+			<value>plus là !</value>
 		</phrases>
 		<verbes>
 			<verbe groupe="3" temps="Imparfait" infinitif="Avoir">avais</verbe>
 			<verbe groupe="1" temps="Imparfait" infinitif="Jouer">jouais</verbe>
 			<verbe groupe="1" temps="Imparfait" infinitif="Flotter">flottait</verbe>
 			<verbe groupe="1" temps="Imparfait" infinitif="Trouver">trouvais</verbe>
-			<verbe groupe="3" temps="PQP" infinitif="Disparaitre">avait disparu</verbe>
+			<verbe groupe="3" temps="Imparfait" infinitif="Être">était</verbe>
 		</verbes>
 	</histoire>
 	<histoire title="fleurs" debloque="helico">
