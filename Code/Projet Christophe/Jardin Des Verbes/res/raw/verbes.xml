@@ -100,6 +100,16 @@
          <value>existent</value>
       </conjugaison>
    </verbe>
+   <verbe infinitif="Devoir" groupe="3" temps="Present">
+      <conjugaison>
+         <value>dois</value>
+         <value>dois</value>
+         <value>doit</value>
+         <value>devons</value>
+         <value>devez</value>
+         <value>doivent</value>
+      </conjugaison>
+   </verbe>
    <verbe infinitif="Produire" groupe="3" temps="Present">
       <conjugaison>
          <value>produis</value>
@@ -108,26 +118,6 @@
          <value>produisons</value>
          <value>produisez</value>
          <value>produisent</value>
-      </conjugaison>
-   </verbe>
-   <verbe infinitif="Avoir" groupe="3" temps="Present">
-      <conjugaison>
-         <value>ai</value>
-         <value>as</value>
-         <value>a</value>
-         <value>avons</value>
-         <value>avez</value>
-         <value>ont</value>
-      </conjugaison>
-   </verbe>
-   <verbe infinitif="Avoir" groupe="3" temps="Imparfait">
-      <conjugaison>
-         <value>avais</value>
-         <value>avais</value>
-         <value>avait</value>
-         <value>avions</value>
-         <value>aviez</value>
-         <value>avaient</value>
       </conjugaison>
    </verbe>
    <verbe infinitif="Balancer" groupe="1" temps="Present">
@@ -160,17 +150,187 @@
          <value>jouent</value>
       </conjugaison>
    </verbe>
-   <verbe infinitif="Flotter" groupe="1" temps="Present">
+    <verbe infinitif="Jouer" groupe="1" temps="Imparfait">
       <conjugaison>
-         <value>flotte</value>
-         <value>flottes</value>
-         <value>flotte</value>
-         <value>flottons</value>
-         <value>flottez</value>
-         <value>flottent</value>
+         <value>jouais</value>
+         <value>jouais</value>
+         <value>jouait</value>
+         <value>jouions</value>
+         <value>jouiez</value>
+         <value>jouaient</value>
       </conjugaison>
    </verbe>
-   <verbe infinitif="Trouver" groupe="1" temps="Present">
+   <verbe infinitif="Flotter" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>flottais</value>
+         <value>flottais</value>
+         <value>flottait</value>
+         <value>flottions</value>
+         <value>flottiez</value>
+         <value>flottaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Trouver" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>trouvais</value>
+         <value>trouvais</value>
+         <value>trouvait</value>
+         <value>trouvions</value>
+         <value>trouviez</value>
+         <value>trouvaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Briller" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>brillais</value>
+         <value>brillais</value>
+         <value>brillait</value>
+         <value>brillions</value>
+         <value>brilliez</value>
+         <value>brillaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Sembler" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>semblais</value>
+         <value>semblais</value>
+         <value>semblait</value>
+         <value>semblions</value>
+         <value>sembliez</value>
+         <value>semblaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Emerveiller" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>emerveillais</value>
+         <value>emerveillais</value>
+         <value>emerveillait</value>
+         <value>emerveillions</value>
+         <value>emerveilliez</value>
+         <value>emerveillaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Voler" groupe="1" temps="Futur">
+      <conjugaison>
+         <value>volerai</value>
+         <value>voleras</value>
+         <value>volera</value>
+         <value>volerons</value>
+         <value>volerez</value>
+         <value>voleront</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Décoller" groupe="1" temps="Futur">
+      <conjugaison>
+         <value>décollerai</value>
+         <value>décolleras</value>
+         <value>décollera</value>
+         <value>décolleront</value>
+         <value>décollerez</value>
+         <value>décolleront</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="S'élever" groupe="1" temps="Futur">
+      <conjugaison>
+         <value>s'élèverai</value>
+         <value>s'élèveras</value>
+         <value>s'élèvera</value>
+         <value>s'élèverons</value>
+         <value>s'élèverez</value>
+         <value>s'élèveront</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Faire" groupe="3" temps="Futur">
+      <conjugaison>
+         <value>ferai</value>
+         <value>feras</value>
+         <value>fera</value>
+         <value>ferons</value>
+         <value>ferez</value>
+         <value>feront</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Regarder" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>regardais</value>
+         <value>regardais</value>
+         <value>regardait</value>
+         <value>regardions</value>
+         <value>regardiez</value>
+         <value>regardaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="S'allonger" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>m'allongeais</value>
+         <value>t'allongeais</value>
+         <value>s'allongeait</value>
+         <value>nous allongions</value>
+         <value>vous allongiez</value>
+         <value>s'allongeaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Admirer" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>admirais</value>
+         <value>admirais</value>
+         <value>admirait</value>
+         <value>admirions</value>
+         <value>admiriez</value>
+         <value>admiriont</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Rendre" groupe="3" temps="Imparfait">
+      <conjugaison>
+         <value>rendrais</value>
+         <value>rendrais</value>
+         <value>rendrait</value>
+         <value>rendrions</value>
+         <value>rendriez</value>
+         <value>rendriont</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Recommencer" groupe="1" temps="Imparfait">
+      <conjugaison>
+         <value>recommençais</value>
+         <value>recommençais</value>
+         <value>recommençait</value>
+         <value>recommencions</value>
+         <value>recommenciez</value>
+         <value>recommençèrent</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Devoir" groupe="3" temps="Présent">
+      <conjugaison>
+         <value>dois</value>
+         <value>dois</value>
+         <value>doit</value>
+         <value>devons</value>
+         <value>devez</value>
+         <value>doivent</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Disposer" groupe="1" temps="Présent">
+      <conjugaison>
+         <value>dispose</value>
+         <value>disposes</value>
+         <value>dispose</value>
+         <value>disposons</value>
+         <value>disposez</value>
+         <value>disposent</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Lancer" groupe="1" temps="Présent">
+      <conjugaison>
+         <value>lance</value>
+         <value>lances</value>
+         <value>lance</value>
+         <value>lançons</value>
+         <value>lancez</value>
+         <value>lancent</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Trouver" groupe="1" temps="Présent">
       <conjugaison>
          <value>trouve</value>
          <value>trouves</value>
@@ -180,7 +340,7 @@
          <value>trouvent</value>
       </conjugaison>
    </verbe>
-      <verbe infinitif="Être" groupe="3" temps="Present">
+    <verbe infinitif="Être" groupe="3" temps="Present">
       <conjugaison>
          <value>suis</value>
          <value>es</value>
@@ -198,6 +358,36 @@
          <value>étions</value>
          <value>étiez</value>
          <value>étaient</value>
+      </conjugaison>
+   </verbe>
+    <verbe infinitif="Avoir" groupe="3" temps="Present">
+      <conjugaison>
+         <value>ai</value>
+         <value>as</value>
+         <value>a</value>
+         <value>avons</value>
+         <value>avez</value>
+         <value>ont</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Avoir" groupe="3" temps="Imparfait">
+      <conjugaison>
+         <value>avais</value>
+         <value>avais</value>
+         <value>avait</value>
+         <value>avions</value>
+         <value>aviez</value>
+         <value>avaient</value>
+      </conjugaison>
+   </verbe>
+   <verbe infinitif="Avoir" groupe="3" temps="Futur">
+      <conjugaison>
+         <value>aurai</value>
+         <value>auras</value>
+         <value>aura</value>
+         <value>aurons</value>
+         <value>aurez</value>
+         <value>auront</value>
       </conjugaison>
    </verbe>
 </verbes>

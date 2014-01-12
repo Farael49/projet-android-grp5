@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,7 +26,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Jardin_Activity extends Activity {
@@ -44,12 +49,35 @@ public class Jardin_Activity extends Activity {
 
 		setContentView(R.layout.jardin_choix_objet);
 
-
+		SlidingMenu menu = new SlidingMenu(this);
+		menu.setMode(SlidingMenu.LEFT);
+		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
+		menu.setSecondaryMenu(R.layout.menu_score);
+		menu.setBehindOffset(1000);
+				
 		Bundle extras = getIntent().getExtras();
 		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
 		StoryManager.getInstance().loadStory(this, profil.getUsername());
+		
+		setMenu();
+		
 		setObjectBackground();
 		//	Utils.showToastText(this, profil.getLesObjets().get(0).getObjetImageFilename());
+	}
+
+	private void setMenu() {
+		// TODO Auto-generated method stub
+
+		final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
+		progressBar.setProgress(profil.getExperience());
+		progressBar.setMax(100);
+		
+		final TextView niveauUtilisateur = (TextView) this.findViewById(R.id.niveauUtilisateur);
+		niveauUtilisateur.setText("Niveau " + profil.getNiveau());
+		
+		final TextView expUtilisateur = (TextView) this.findViewById(R.id.expUtilisateur);
+		expUtilisateur.setText(profil.getExperience() + " / 100");
 	}
 
 	private void setObjectBackground() {
@@ -105,6 +133,8 @@ public class Jardin_Activity extends Activity {
 				Intent intent = new Intent(Jardin_Activity.this,
 						Histoire_Activity.class);
 				intent.putExtra("story", hist.getReference());
+				intent.putExtra("experience", profil.getExperience());
+				intent.putExtra("niveau", profil.getNiveau());
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivityForResult(intent,1);
 				Utils.showToastText(this, "Chargement de l'histoire \""+nomObjet+"\"");
@@ -169,6 +199,7 @@ public class Jardin_Activity extends Activity {
 				}
 			}
 			setObjectBackground();
+			setMenu();
 		}
 		if (resultCode == RESULT_CANCELED) {    
 			Log.e("JDV",profil.toString());
