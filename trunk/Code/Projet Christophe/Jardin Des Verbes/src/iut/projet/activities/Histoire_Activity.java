@@ -58,6 +58,7 @@ public class Histoire_Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
 
+		//Déclare un SlidingMenu permettant d'afficher le niveau et l'expérience du joueur 
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
@@ -94,8 +95,6 @@ public class Histoire_Activity extends Activity {
 		progressBar.setMax(100);
 
 
-		Log.e("JDV",nomObjet);
-
 		// Parcours la liste des histoires pour récupèrer dans "histoire" celle choisie
 		// A voir pour refaire avec un while niveau opti
 		int i=0;
@@ -103,8 +102,7 @@ public class Histoire_Activity extends Activity {
 			i++;
 		}
 		histoire = list.get(i);
-		Log.e("JDV",histoire.getTitre());
-		Log.e("JDV",histoire.getPhrases().get(0).toString());
+
 		// Récupère le layout
 		FrameLayout fl=(FrameLayout) this.findViewById(R.layout.histoire);
 		// Récupère l'id de l'image utilisee comme background pour cette histoire
@@ -114,7 +112,7 @@ public class Histoire_Activity extends Activity {
 
 		// Récupère le TextView utilisé pour afficher l'histoire
 		final TextView textHistoire = (TextView) this.findViewById(R.id.texteHistoire);
-		Log.e("JDV","phrase : "+histoire.getPhrases().get(0));
+
 		// Affiche le début de l'histoire jusqu'au premier verbe
 		String texte = (String) histoire.getPhrases().get(0);
 		textHistoire.setText(texte);
@@ -145,9 +143,6 @@ public class Histoire_Activity extends Activity {
 		scoreTotal.setText("Score Total : 0");
 		final TextView scoreDuVerbe = (TextView) this.findViewById(R.id.scoreVerbe);
 		scoreDuVerbe.setText("Points pour ce verbe : 40");
-		// vérifie ce que contient la liste de groupes de verbes
-		Log.e("JDV","size : " + histoire.getGroupes().size() + "groupe: " + histoire.getGroupes().get(0));
-
 
 
 		//Pour détecter lorsque le clavier apparait
@@ -173,9 +168,7 @@ public class Histoire_Activity extends Activity {
 		//Correspond au bouton d'aide qui apparait à partir de 2 erreurs sur un même verbe
 		final Button aideConjugaison = (Button) this.findViewById(R.id.aideConjugaison);
 
-
-
-
+		//Listener sur le click de l'editText, permet de valider la fin de partie
 		entreeUtilisateur.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -196,26 +189,19 @@ public class Histoire_Activity extends Activity {
 						}
 					}
 				}
-				else{
-					// adapte la marge en raison du clavier
 
-					//		params.setMargins(params.leftMargin, params.topMargin, params.rightMargin, 0); //substitute parameters for left, top, right, bottom
-					//		verbeInfinitif.setLayoutParams(params);
-				}
 			}
 
 
 		});
+
 		//Listener sur le bouton "Done" ( en français " OK ")
 		entreeUtilisateur.setOnEditorActionListener(new OnEditorActionListener() {        
 
-
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				//params.setMargins(leftMargin, height, rightMargin, bottomMargin);
-				//verbeInfinitif.setLayoutParams(params);
-				//(int) convertDpToPixel(75, getApplicationContext())
-				if(actionId==EditorInfo.IME_ACTION_DONE && entreeUtilisateur.getText()!=null){
+				// Si l'utilisateur a confirmé son entrée en appuyant sur OK et que l'entrée n'est pas vide
+				if(actionId==EditorInfo.IME_ACTION_DONE && entreeUtilisateur.getText().length()>0){
 					Log.e("JDV", "verbe en cours de traitement");
 					// Vérifie que l'histoire n'est pas terminée avant de chercher dans la liste pour éviter un IndexOutOfBounds
 					if(!histoire_finie){
@@ -237,10 +223,13 @@ public class Histoire_Activity extends Activity {
 							// incrèmente compteur après l'avoir utilisé pour le verbe, et affiche la phrase suivante
 							textHistoire.setText(textHistoire.getText() + " " + histoire.getVerbes().get(compteur++) + " " 
 									+ histoire.getPhrases().get(compteur) );
+							
+							//actualise l'infinitif et le temps pour correspondre au verbe suivant
 							if(compteur<=histoire.getVerbes().size()-1){
 								verbeInfinitif.setText(" ( " + histoire.getInfinitifs().get(compteur) + " - " + histoire.getTemps().get(compteur) + " ) ");
 							}
 							else{
+								// tous les verbes ont été complétés -> fin d'histoire, cache verbeInfinitif et déclare l'histoire comme finie
 								verbeInfinitif.setVisibility(View.INVISIBLE);
 								histoire_finie = true;			
 							}
@@ -277,6 +266,7 @@ public class Histoire_Activity extends Activity {
 					entreeUtilisateur.setText("");
 					scoreTotal.setText("Score total : "+scoreFinal);
 					scoreDuVerbe.setText("Points pour ce verbe : "+scoreVerbe);
+					// modifie l'editText pour indiquer à l'utilisateur qu'il peut appuyer dessus lorsqu'il a fini de lire l'histoire pour la valider
 					if(histoire_finie){
 						entreeUtilisateur.setText("Appuyez pour valider");
 						entreeUtilisateur.setFocusable(false);
@@ -289,6 +279,7 @@ public class Histoire_Activity extends Activity {
 	}
 
 	public void retourJardin(View v) {
+		// fonction de retour au Jardin, renvoie les données du jeu demandées par l'onActivityResult
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("nomObjet",nomObjet);
 		returnIntent.putExtra("scoreHistoire",scoreFinal);
@@ -300,7 +291,7 @@ public class Histoire_Activity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		/**
-		 * Non demandé, retourne false
+		 * Non utilisé, retourne false
 		 */
 		getMenuInflater().inflate(R.menu.main, menu);
 		return false;
@@ -316,6 +307,10 @@ public class Histoire_Activity extends Activity {
 	}
 
 	public void ficheAide(View v){
+		/*
+		 *  fiche d'aide disponible à partir de 2 erreurs
+		 *  cherche le verbe utilisé dans verbes.xml, et en affiche l'aide selon le temps
+		 */
 
 		int groupe = Integer.parseInt((String) histoire.getGroupes().get(compteur));
 		String temps = (String) histoire.getTemps().get(compteur);
@@ -334,7 +329,6 @@ public class Histoire_Activity extends Activity {
 		else{
 			verbe = verManager.getVerbe(infinitif, temps);
 		}
-		//Verbe verbe = verManager.getVerbe(infinitifVerbe);
 
 		dialog.setContentView(R.layout.aide_1);
 		dialog.setTitle("Un petit coup de main ?");
@@ -359,7 +353,10 @@ public class Histoire_Activity extends Activity {
 		dialog.show();
 	}
 	public void ficheAide(View v, Verbe verbe){
-
+		/*
+		 * Du même type à la fiche d'aide précédente, celle-ci ne nécessite pas de rechercher un verbe "similaire"
+		 * mais uniquement d'afficher un verbe présent dans l'histoire, passé en paramètre
+		 */
 		final Dialog dialog = new Dialog(this);
 
 		dialog.setContentView(R.layout.aide_1);
@@ -385,7 +382,11 @@ public class Histoire_Activity extends Activity {
 		dialog.show();
 	}
 
+	
 	public void affichageScore(View v){
+		/*
+		 * Dialogue permettant d'afficher le score en fin de partie
+		 */
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.fenetre_score);
 		dialog.setTitle("Votre score");
@@ -413,7 +414,12 @@ public class Histoire_Activity extends Activity {
 	long lastPress;
 	final int MS_TIME_TO_EXIT = 3000;
 	@Override
+	
 	public void onBackPressed() {
+		/*
+		 * Redéfinit la pression du bouton retour pour éviter de perdre l'avancée
+		 * à cause d'une légère erreur de manipulation
+		 */
 		long currentTime = System.currentTimeMillis();
 		if(currentTime - lastPress > MS_TIME_TO_EXIT){
 			lastPress = currentTime;
@@ -424,14 +430,6 @@ public class Histoire_Activity extends Activity {
 			super.onBackPressed();
 		}
 	}
-
-	public static float convertDpToPixel(float dp, Context context){
-		Resources resources = context.getResources();
-		DisplayMetrics metrics = resources.getDisplayMetrics();
-		float px = dp * (metrics.densityDpi / 160f);
-		return px;
-	}
-
 
 
 }

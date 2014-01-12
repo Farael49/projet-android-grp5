@@ -49,25 +49,27 @@ public class Jardin_Activity extends Activity {
 
 		setContentView(R.layout.jardin_choix_objet);
 
+		//Déclare un SlidingMenu permettant d'afficher le niveau et l'expérience du joueur 
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
 		menu.setSecondaryMenu(R.layout.menu_score);
 		menu.setBehindOffset(1000);
-				
+		
+		//Extras pour récupérer les données envoyées d'une activité à l'autre
 		Bundle extras = getIntent().getExtras();
 		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
 		StoryManager.getInstance().loadStory(this, profil.getUsername());
 		
+		// affiche / actualise les valeurs du Menu disponible en slidant vers la droite
 		setMenu();
-		
+		// affiche / actualise les objets du Jardin
 		setObjectBackground();
-		//	Utils.showToastText(this, profil.getLesObjets().get(0).getObjetImageFilename());
 	}
 
 	private void setMenu() {
-		// TODO Auto-generated method stub
+		// permet d'afficher le niveau et l'expérience du joueur
 
 		final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
 		progressBar.setProgress(profil.getExperience());
@@ -95,6 +97,8 @@ public class Jardin_Activity extends Activity {
 	}
 
 	public void startStory(View v){
+		// Lorsqu'un objet est sélectionné, cette fonction est appelée et lance l'activité Histoire_Activity
+		// Elle passe via extras le nom de l'objet, et l'expérience et le niveau du joueur
 		String nomObjet=null;
 		boolean start = false;
 		switch (v.getId()) {
@@ -125,7 +129,7 @@ public class Jardin_Activity extends Activity {
 		}
 
 
-		// Parcourt le contenu de nomsObjets pour trouver l'objet choisit par l'utilisateur
+		// Parcourt le contenu de nomsObjets pour trouver l'objet choisi par l'utilisateur
 		for(ObjetHistoire hist : profil.getLesObjets()){
 			if(hist.getReference().equals(nomObjet)){
 				start = true;
@@ -146,40 +150,32 @@ public class Jardin_Activity extends Activity {
 
 	}
 
-	/*	private void startStoryActivity(ObjetHistoire hist) {
-		Intent intent = new Intent(Jardin_Activity.this,
-				Histoire_Activity.class);
-		intent.putExtra("Histoire", hist.getReference());
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
-		Utils.showToastText(this, "Chargement de l'histoire \""+hist+"\"");
-	}
-
-	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(resultCode != RESULT_CANCELED){
 			if (requestCode == 1) {
 
 				if(resultCode == RESULT_OK){      
-					Log.e("JDV", "REACHED OK");
+
 					// récupère le nom de l'objet, et le score
 					String nomHistoire=data.getStringExtra("nomObjet");  
 					int score=data.getIntExtra("scoreHistoire", SCORE_PAR_DEFAUT);  
+					
 					// appelle la fonction getHistoireADebloquer pour savoir s'il doit débloquer une histoire ou non
 					String storyToUnlock = StoryManager.getInstance().getHistoire(nomHistoire).getHistoireADebloquer();
-					Log.e("JDV",nomHistoire + " -> " + storyToUnlock);
-					Log.e("JDV",""+StoryManager.getInstance().checkExists(storyToUnlock));
+
 					//Si l'histoire a débloquer n'est pas encore disponible, on l'ajoute
 					if(!StoryManager.getInstance().checkExists(storyToUnlock)){
 						profil.getLesObjets().add(new ObjetHistoire(storyToUnlock,ObjetHistoire.AVAILABLE));
 						Utils.showToastText(this, "Histoire "+storyToUnlock+" débloquée");
 						// plus qu'à s'occuper de l'histoire finie et la passer en DONE
 					}
+					
 					for(ObjetHistoire hist : profil.getLesObjets()){
 						if(hist.getReference().equals(nomHistoire))
 							if(hist.getEtat()==ObjetHistoire.AVAILABLE)
 								hist.setEtat(ObjetHistoire.DONE);
 					}
+					
 					// ajoute l'expérience actuelle du joueur et le score obtenu avec l'histoire
 					newExperience = score + profil.getExperience();
 					// gestion des niveaux selon l'expérience
@@ -202,9 +198,7 @@ public class Jardin_Activity extends Activity {
 			setMenu();
 		}
 		if (resultCode == RESULT_CANCELED) {    
-			Log.e("JDV",profil.toString());
 			//Histoire non complétée jusqu'au bout
-			Log.e("JDV","Histoire terminée, pas de résultat à retourner");
 		}
 	}
 
