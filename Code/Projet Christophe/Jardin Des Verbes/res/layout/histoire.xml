@@ -19,8 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
-        android:layout_marginBottom="75dp"
-        android:layout_marginLeft="250dp"
+        android:layout_marginBottom="67dp"
+        android:layout_marginLeft="240dp"
+        android:background="@drawable/bordure_profil"
         android:tag="Suplexmentary"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="20sp" />

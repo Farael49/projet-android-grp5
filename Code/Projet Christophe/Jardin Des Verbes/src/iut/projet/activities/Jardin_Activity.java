@@ -1,6 +1,7 @@
 package iut.projet.activities;
 
 import iut.projet.jardindesverbes.ObjetHistoire;
+import iut.projet.jardindesverbes.Police;
 import iut.projet.jardindesverbes.Profil;
 import iut.projet.jardindesverbes.ProfilManager;
 import iut.projet.jardindesverbes.R;
@@ -54,14 +55,18 @@ public class Jardin_Activity extends Activity {
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
-		menu.setSecondaryMenu(R.layout.menu_score);
+		menu.setSecondaryMenu(R.layout.menu_score_jardin);
 		menu.setBehindOffset(1000);
-		
+
+		// Police d'écriture
+		Police police = new Police(getApplicationContext());
+		police.setupLayoutTypefaces(getWindow().getDecorView());
+
 		//Extras pour récupérer les données envoyées d'une activité à l'autre
 		Bundle extras = getIntent().getExtras();
 		profil = ProfilManager.getInstance().getProfil(extras.getString("username"));
 		StoryManager.getInstance().loadStory(this, profil.getUsername());
-		
+
 		// affiche / actualise les valeurs du Menu disponible en slidant vers la droite
 		setMenu();
 		// affiche / actualise les objets du Jardin
@@ -74,10 +79,10 @@ public class Jardin_Activity extends Activity {
 		final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
 		progressBar.setProgress(profil.getExperience());
 		progressBar.setMax(100);
-		
+
 		final TextView niveauUtilisateur = (TextView) this.findViewById(R.id.niveauUtilisateur);
 		niveauUtilisateur.setText("Niveau " + profil.getNiveau());
-		
+
 		final TextView expUtilisateur = (TextView) this.findViewById(R.id.expUtilisateur);
 		expUtilisateur.setText(profil.getExperience() + " / 100");
 	}
@@ -159,7 +164,7 @@ public class Jardin_Activity extends Activity {
 					// récupère le nom de l'objet, et le score
 					String nomHistoire=data.getStringExtra("nomObjet");  
 					int score=data.getIntExtra("scoreHistoire", SCORE_PAR_DEFAUT);  
-					
+
 					// appelle la fonction getHistoireADebloquer pour savoir s'il doit débloquer une histoire ou non
 					String storyToUnlock = StoryManager.getInstance().getHistoire(nomHistoire).getHistoireADebloquer();
 
@@ -169,13 +174,13 @@ public class Jardin_Activity extends Activity {
 						Utils.showToastText(this, "Histoire "+storyToUnlock+" débloquée");
 						// plus qu'à s'occuper de l'histoire finie et la passer en DONE
 					}
-					
+
 					for(ObjetHistoire hist : profil.getLesObjets()){
 						if(hist.getReference().equals(nomHistoire))
 							if(hist.getEtat()==ObjetHistoire.AVAILABLE)
 								hist.setEtat(ObjetHistoire.DONE);
 					}
-					
+
 					// ajoute l'expérience actuelle du joueur et le score obtenu avec l'histoire
 					newExperience = score + profil.getExperience();
 					// gestion des niveaux selon l'expérience
