@@ -23,13 +23,31 @@
         android:tag="Suplexmentary"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/black" />
+    
+    <TextView
+        android:id="@+id/bravo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:tag="Suplexmentary"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black"
+        android:text="Bravo !!" />
+
+    <ImageView
+        android:id="@+id/imageCoupe"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="2dp"
+        android:src="@drawable/coupe_victoire" />
 
     <Button
         android:id="@+id/finHistoire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:text="Continuer" 
-        android:onClick="retourJardin"/>
+        android:onClick="retourJardin"
+        android:text="Continuer" />
 
 </LinearLayout>

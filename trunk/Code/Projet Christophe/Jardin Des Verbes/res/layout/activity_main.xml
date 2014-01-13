@@ -21,7 +21,7 @@
             android:id="@+id/LogoAppli"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/sym_def_app_icon" />
+            android:src="@drawable/logo_appli" />
 
         <LinearLayout
             android:id="@+id/LayoutProfilForm"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textVisiblePassword"
                 android:tag="Suplexmentary" />
 
             <LinearLayout
@@ -72,7 +72,7 @@
                     android:tag="Suplexmentary"
                     android:text="@string/Profil_CreerProfilBouton" />
             </LinearLayout>
-
+		<!--  
             <Button
                 android:id="@+id/Profil_viderListe"
                 android:layout_width="wrap_content"
@@ -84,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Debug, Afficher le dialogue d&apos;aide" />
+        --> 
         </LinearLayout>
     </LinearLayout>
 

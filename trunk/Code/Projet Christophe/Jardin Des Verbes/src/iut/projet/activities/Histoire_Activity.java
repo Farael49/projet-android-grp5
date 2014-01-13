@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import android.R.color;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -58,14 +59,15 @@ public class Histoire_Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.histoire);
 
+
+
 		//Déclare un SlidingMenu permettant d'afficher le niveau et l'expérience du joueur 
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
-		menu.setSecondaryMenu(R.layout.menu_score);
+		menu.setSecondaryMenu(R.layout.menu_score_histoire);
 		menu.setBehindOffset(1000);
-
 
 		// Police d'écriture
 		Police police = new Police(getApplicationContext());
@@ -82,26 +84,37 @@ public class Histoire_Activity extends Activity {
 
 		final TextView expUtilisateur = (TextView) this.findViewById(R.id.expUtilisateur);
 		final TextView niveautilisateur = (TextView) this.findViewById(R.id.niveauUtilisateur);
+		final TextView verbeProgress = (TextView) this.findViewById(R.id.verbeProgress);
 
 		//Récupère le nom de l'objet choisit 
 		Bundle extras = getIntent().getExtras();
 		nomObjet = extras.getString("story");
 
-		expUtilisateur.setText(extras.getInt("experience") + " / 100");
+		expUtilisateur.setText(extras.getInt("experience") + "%");
 		niveautilisateur.setText("Niveau " + extras.getInt("niveau"));
+		
 
-		final ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressBar);
-		progressBar.setProgress(extras.getInt("experience"));
-		progressBar.setMax(100);
+
 
 
 		// Parcours la liste des histoires pour récupèrer dans "histoire" celle choisie
-		// A voir pour refaire avec un while niveau opti
 		int i=0;
 		while(!list.get(i).getTitre().equals(nomObjet)){
 			i++;
 		}
 		histoire = list.get(i);
+
+		verbeProgress.setText("0/" + histoire.getVerbes().size());
+		
+		if(compteur/histoire.getVerbes().size() > 0.5)
+			verbeProgress.setTextColor(color.holo_purple);
+		
+		final ProgressBar progressBarExp = (ProgressBar) this.findViewById(R.id.progressBarExperience);
+		progressBarExp.setProgress(extras.getInt("experience"));
+		progressBarExp.setMax(100);
+
+		final ProgressBar progressBarVerbes = (ProgressBar) this.findViewById(R.id.progressBarVerbes);
+		progressBarVerbes.setMax(histoire.getVerbes().size());
 
 		// Récupère le layout
 		FrameLayout fl=(FrameLayout) this.findViewById(R.layout.histoire);
@@ -223,6 +236,10 @@ public class Histoire_Activity extends Activity {
 							// incrèmente compteur après l'avoir utilisé pour le verbe, et affiche la phrase suivante
 							textHistoire.setText(textHistoire.getText() + " " + histoire.getVerbes().get(compteur++) + " " 
 									+ histoire.getPhrases().get(compteur) );
+
+							//actualise la progressBar du nombre de verbes corrects
+							progressBarVerbes.setProgress(compteur);
+							verbeProgress.setText(compteur + "/" + histoire.getVerbes().size());
 							
 							//actualise l'infinitif et le temps pour correspondre au verbe suivant
 							if(compteur<=histoire.getVerbes().size()-1){
@@ -369,8 +386,10 @@ public class Histoire_Activity extends Activity {
 		aide_Titre.setText("Conjugaison du verbe '"+verbe.getInfinitif()+"' au temps :"+verbe.getTemps());
 
 		aide_Conjugaison.setText(verbe.getConjugaison());
+		aide_Conjugaison.setX(300);
 
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+		dialogButton.setText("Suivant");
 		// if button is clicked, close the custom dialog
 
 		dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -382,7 +401,7 @@ public class Histoire_Activity extends Activity {
 		dialog.show();
 	}
 
-	
+
 	public void affichageScore(View v){
 		/*
 		 * Dialogue permettant d'afficher le score en fin de partie
@@ -394,7 +413,7 @@ public class Histoire_Activity extends Activity {
 		// set the custom dialog components - text, image and button
 		TextView score = (TextView) dialog.findViewById(R.id.score);
 
-		score.setText("Vous avez obtenu "+scoreFinal+" points ! \n\n\nBravo !!");
+		score.setText("Vous avez obtenu "+scoreFinal+" points !");
 
 
 		Button validerHistoire = (Button) dialog.findViewById(R.id.finHistoire);
@@ -414,7 +433,7 @@ public class Histoire_Activity extends Activity {
 	long lastPress;
 	final int MS_TIME_TO_EXIT = 3000;
 	@Override
-	
+
 	public void onBackPressed() {
 		/*
 		 * Redéfinit la pression du bouton retour pour éviter de perdre l'avancée
