@@ -21,13 +21,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main_Profil_Activity extends Activity {
 
 	private EditText profilTextField;
 	private ProfilManager profils;
 	private Dialog dialog;
-
+	Intent music = new Intent();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class Main_Profil_Activity extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
-		Intent music = new Intent();
+		
 		music.setClass(this,MusicService.class);
 		startService(music);
 
@@ -107,7 +108,7 @@ public class Main_Profil_Activity extends Activity {
 			}
 
 		} else {
-			Utils.showToastText(this, "Mes ton nom !");
+			Utils.showToastText(this, "Mets ton nom !");
 		}
 	}
 
@@ -121,7 +122,7 @@ public class Main_Profil_Activity extends Activity {
 		String str = profilTextField.getText().toString();
 		Profil profil = profils.getProfil(str);
 		if(profil==null){
-			Utils.showToastText(this, "Le profil "+str+" n'éxiste pas.");
+			Utils.showToastText(this, "Le profil "+str+" n'existe pas.");
 		}else{
 			//SyntheseVocale.voc(this, "gros test");
 			Log.i("JDV","charger le profil !");
@@ -174,5 +175,6 @@ public class Main_Profil_Activity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
 
 }

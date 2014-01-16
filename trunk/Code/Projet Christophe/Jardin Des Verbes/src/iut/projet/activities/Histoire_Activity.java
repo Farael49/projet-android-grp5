@@ -164,13 +164,13 @@ public class Histoire_Activity extends Activity {
 			public void onGlobalLayout() {
 				int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
 				if (heightDiff > 100) { // if more than 100 pixels, its probably a keyboard...
-					System.out.println("Checked a keyboard");
+				//	System.out.println("Checked a keyboard");
 					verbeParams.setMargins(verbeParams.leftMargin, verbeParams.topMargin, verbeParams.rightMargin, 10);
 					entreeUtilisateurParams.setMargins(entreeUtilisateurParams.leftMargin, entreeUtilisateurParams.topMargin, entreeUtilisateurParams.rightMargin, 0);
 					verbeInfinitif.setLayoutParams(verbeParams);
 				}
 				else{
-					System.out.println("KBoard disabled");
+				//	System.out.println("KBoard disabled");
 					verbeParams.setMargins(vLeftMargin, vHeight, vRightMargin, vBottomMargin); //substitute parameters for left, top, right, bottom
 					entreeUtilisateurParams.setMargins(entreeUtilisateurParams.leftMargin, entreeUtilisateurParams.topMargin, entreeUtilisateurParams.rightMargin, eBottomMargin);
 					verbeInfinitif.setLayoutParams(verbeParams);

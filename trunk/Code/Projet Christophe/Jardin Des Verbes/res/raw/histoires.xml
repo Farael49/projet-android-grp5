@@ -93,7 +93,7 @@
 			<value>beaucoup de bruit !</value>
 		</phrases>
 		<verbes>
-			<verbe groupe="3" temps="Futur" infinitif="Avoir">aurais</verbe>
+			<verbe groupe="3" temps="Futur" infinitif="Avoir">aurai</verbe>
 			<verbe groupe="1" temps="Futur" infinitif="Voler">volera</verbe>
 			<verbe groupe="1" temps="Futur" infinitif="Décoller">décollera</verbe>
 			<verbe groupe="1" temps="Futur" infinitif="S'élever">s'élèvera</verbe>
