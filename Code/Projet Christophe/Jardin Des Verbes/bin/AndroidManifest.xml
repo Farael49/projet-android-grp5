@@ -29,11 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="iut.projet.activities.Jardin_Activity" >
+        <activity
+            android:name="iut.projet.activities.Jardin_Activity"
+            android:screenOrientation="sensorLandscape" >
         </activity>
         <activity
             android:name="iut.projet.activities.Histoire_Activity"
             android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustResize" >
         </activity>
     </application>
