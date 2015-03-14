@@ -1,0 +1,1 @@
+Au frontières de l'abstractude et de la concrétude, ce svn est terre de privatitude.
